@@ -140,6 +140,10 @@ console.log(report.summary, renderReport(report, 'md'));
 - **Registry data** can be missing (offline without a cache, or a service that cannot be reached). The report says so
   instead of treating it as a clean result.
 
+## Need help with a React Native upgrade?
+
+I built RN Upgrade Doctor after migrating production apps from 0.64 → 0.84 and 0.75 → 0.84.1 to the New Architecture. If you're stuck on an upgrade, feel free to connect or message me on [LinkedIn](https://www.linkedin.com/in/chakrapani-reddy-977846140).
+
 ## Development
 
 ```bash
