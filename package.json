@@ -1,7 +1,7 @@
 {
   "name": "rn-upgrade-doctor",
-  "version": "0.1.0",
-  "description": "One command to see what breaks when you upgrade a React Native app: dependencies, New Architecture, Android/iOS config and 16 KB page-size checks.",
+  "version": "0.2.0",
+  "description": "One command to see what breaks when you upgrade a React Native app, and whether a built APK is ready for Google Play: dependencies, New Architecture, Android/iOS config, 16 KB pages, signing and Play Store rules.",
   "type": "module",
   "bin": {
     "rn-upgrade-doctor": "dist/cli.js"
@@ -31,7 +31,13 @@
     "new-architecture",
     "16kb",
     "android",
-    "doctor"
+    "doctor",
+    "apk",
+    "aab",
+    "google-play",
+    "play-store",
+    "android-manifest",
+    "apk-signing"
   ],
   "author": "Sunkesula Chakrapani Reddy",
   "repository": {

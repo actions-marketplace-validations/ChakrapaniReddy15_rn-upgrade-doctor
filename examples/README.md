@@ -32,13 +32,14 @@ or React Native Directory change. Drop `--offline --cache-dir examples/registry-
 | `12-not-an-rn-app` | A web app without `react-native` | `npx tsx src/cli.ts examples/12-not-an-rn-app --offline --cache-dir examples/registry-snapshot` | 2 | none (tool error) |
 | `13-registry-data-missing` | A dependency and an RN version (0.86.0) whose data is not in the snapshot, like being offline without a cache | `npx tsx src/cli.ts examples/13-registry-data-missing --offline --cache-dir examples/registry-snapshot` | 0 | `data-registry-unavailable`, `data-template-unavailable` |
 | `14-monorepo` | Yarn workspaces: the app is in `apps/mobile`; `yarn.lock` and `patches/` are at the monorepo root | `npx tsx src/cli.ts examples/14-monorepo/apps/mobile --offline --cache-dir examples/registry-snapshot` | 0 | `patch:react-native-mmkv` (from `../../patches/`), RN version from `../../yarn.lock` |
+| `15-play-store` | **No project, only built apps** (APK-only mode): 12 APKs and an AAB, one Google Play problem each; see [its README](15-play-store/README.md) | `npx tsx src/cli.ts --apk examples/15-play-store/debug-signed.apk` | 0 or 1 | `play-target-sdk`, `play-debuggable`, `play-debug-signed`, `play-exported`, `play-64bit`, `play-unsigned`, `play-v1-only`, `play-cert-expired`, `play-cert-validity` (blockers); `play-permission:*`, `play-cleartext` (warnings) |
 
 The full expected findings for each run are in [`scripts/examples.ts`](../scripts/examples.ts); `test/examples.test.ts`
 checks them, snapshots each JSON report, and fails if a finding id in `src/checks/` is not covered by an example.
 
 ## Notes
 
-- **APKs for 09** are generated, not committed (`*.apk` is gitignored): `npx tsx scripts/make-example-apks.ts`.
+- **APKs for 09 and 15** are generated, not committed (`*.apk` and `*.aab` are gitignored): `npx tsx scripts/make-example-apks.ts`.
   The `.so` files inside are minimal ELF headers with no code, enough for the 16 KB checks. The `.so` → package
   mapping uses the known table in `src/rules/libraries.ts`, since examples have no `node_modules`.
 - **04 has a blocker.** React Native Directory marks `react-native-code-push` as not supporting the New Architecture,

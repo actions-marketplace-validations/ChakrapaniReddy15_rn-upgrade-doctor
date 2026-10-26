@@ -26,7 +26,7 @@ jobs:
       # Optional: installing dependencies lets the 16 KB scan map each .so to its npm package.
       # - run: npm ci --ignore-scripts
 
-      - uses: ChakrapaniReddy15/rn-upgrade-doctor@v0.1.0
+      - uses: ChakrapaniReddy15/rn-upgrade-doctor@v0.2.0
         with:
           comment: true
           fail-on-blockers: true

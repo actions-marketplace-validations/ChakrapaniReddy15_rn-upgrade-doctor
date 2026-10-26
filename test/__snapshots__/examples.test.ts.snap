@@ -157,6 +157,7 @@ exports[`examples > 01 healthy latest 1`] = `
     "latestReactNative": "0.87.1",
     "latestReactNativeSource": "npm registry (cache)",
     "lockfile": "package-lock.json",
+    "mode": "project",
     "offline": true,
     "packageManager": "npm",
     "reactNativeVersion": "0.87.1",
@@ -356,6 +357,7 @@ exports[`examples > 02 old RN version 1`] = `
     "latestReactNative": "0.87.1",
     "latestReactNativeSource": "npm registry (cache)",
     "lockfile": "package-lock.json",
+    "mode": "project",
     "offline": true,
     "packageManager": "npm",
     "reactNativeVersion": "0.68.7",
@@ -521,6 +523,7 @@ exports[`examples > 03 New Architecture blockers 1`] = `
     "latestReactNative": "0.87.1",
     "latestReactNativeSource": "npm registry (cache)",
     "lockfile": "package-lock.json",
+    "mode": "project",
     "offline": true,
     "packageManager": "npm",
     "reactNativeVersion": "0.87.1",
@@ -736,6 +739,7 @@ exports[`examples > 04 unmaintained deps 1`] = `
     "latestReactNative": "0.87.1",
     "latestReactNativeSource": "npm registry (cache)",
     "lockfile": "package-lock.json",
+    "mode": "project",
     "offline": true,
     "packageManager": "npm",
     "reactNativeVersion": "0.87.1",
@@ -861,6 +865,7 @@ exports[`examples > 05 Android config 1`] = `
     "latestReactNative": "0.87.1",
     "latestReactNativeSource": "npm registry (cache)",
     "lockfile": "package-lock.json",
+    "mode": "project",
     "offline": true,
     "packageManager": "npm",
     "reactNativeVersion": "0.87.1",
@@ -1042,6 +1047,7 @@ exports[`examples > 06 iOS Podfile 1`] = `
     "latestReactNative": "0.87.1",
     "latestReactNativeSource": "npm registry (cache)",
     "lockfile": "package-lock.json",
+    "mode": "project",
     "offline": true,
     "packageManager": "npm",
     "reactNativeVersion": "0.87.1",
@@ -1198,6 +1204,7 @@ exports[`examples > 07 patch-package 1`] = `
     "latestReactNative": "0.87.1",
     "latestReactNativeSource": "npm registry (cache)",
     "lockfile": "package-lock.json",
+    "mode": "project",
     "offline": true,
     "packageManager": "npm",
     "reactNativeVersion": "0.87.1",
@@ -1321,6 +1328,7 @@ exports[`examples > 08 lockfiles (npm) 1`] = `
     "latestReactNative": "0.87.1",
     "latestReactNativeSource": "npm registry (cache)",
     "lockfile": "package-lock.json",
+    "mode": "project",
     "offline": true,
     "packageManager": "npm",
     "reactNativeVersion": "0.85.2",
@@ -1434,6 +1442,7 @@ exports[`examples > 08 lockfiles (pnpm) 1`] = `
     "latestReactNative": "0.87.1",
     "latestReactNativeSource": "npm registry (cache)",
     "lockfile": "pnpm-lock.yaml",
+    "mode": "project",
     "offline": true,
     "packageManager": "pnpm",
     "reactNativeVersion": "0.85.2",
@@ -1547,6 +1556,7 @@ exports[`examples > 08 lockfiles (yarn) 1`] = `
     "latestReactNative": "0.87.1",
     "latestReactNativeSource": "npm registry (cache)",
     "lockfile": "yarn.lock",
+    "mode": "project",
     "offline": true,
     "packageManager": "yarn",
     "reactNativeVersion": "0.85.2",
@@ -1623,6 +1633,49 @@ exports[`examples > 09 16 KB (bad.apk) 1`] = `
         "zipAligned": true,
       },
     ],
+    "manifest": {
+      "available": true,
+      "manifest": {
+        "components": [
+          {
+            "exported": true,
+            "hasIntentFilter": true,
+            "name": "com.demo.scanner.MainActivity",
+            "type": "activity",
+          },
+        ],
+        "minSdk": 24,
+        "networkSecurityConfig": false,
+        "package": "com.demo.scanner",
+        "permissions": [
+          "android.permission.INTERNET",
+        ],
+        "targetSdk": 36,
+        "versionCode": 1,
+        "versionName": "1.0",
+      },
+    },
+    "signing": {
+      "certificates": [
+        {
+          "debug": false,
+          "schemes": [
+            "v2",
+            "v3",
+          ],
+          "sha256": "99:9E:F3:30:F3:F9:06:9E:C1:26:A5:1E:B5:31:67:28:3E:4D:23:51:A8:07:C1:A8:B8:EF:30:07:0C:68:17:4A",
+          "subject": "CN=Demo Release, O=Demo, C=US",
+          "validFrom": "2026-01-01T05:31:16.000Z",
+          "validTo": "2060-12-23T05:31:16.000Z",
+        },
+      ],
+      "debugSigned": false,
+      "schemes": [
+        "v2",
+        "v3",
+      ],
+      "unsigned": false,
+    },
   },
   "dependencies": [
     {
@@ -1721,6 +1774,14 @@ exports[`examples > 09 16 KB (bad.apk) 1`] = `
       "source": "APK scan (APK); package from known table",
       "title": "react-native-reanimated: libreanimated.so not 16 KB page-size compatible",
     },
+    {
+      "docs": "https://developer.android.com/guide/app-bundle",
+      "fix": "Upload the AAB of the same build (./gradlew bundleRelease).",
+      "id": "play-aab-required",
+      "severity": "info",
+      "source": "APK scan (APK)",
+      "title": "Google Play needs an Android App Bundle (AAB) for new apps; this APK check is a pre-upload check",
+    },
   ],
   "meta": {
     "apk": "<tmp>/bad.apk",
@@ -1728,6 +1789,7 @@ exports[`examples > 09 16 KB (bad.apk) 1`] = `
     "latestReactNative": "0.87.1",
     "latestReactNativeSource": "npm registry (cache)",
     "lockfile": "package-lock.json",
+    "mode": "project",
     "offline": true,
     "packageManager": "npm",
     "reactNativeVersion": "0.87.1",
@@ -1744,9 +1806,40 @@ exports[`examples > 09 16 KB (bad.apk) 1`] = `
     "targetVersion": "0.87.1",
   },
   "patches": [],
+  "playStore": {
+    "app": {
+      "minSdk": 24,
+      "package": "com.demo.scanner",
+      "targetSdk": 36,
+      "versionCode": 1,
+      "versionName": "1.0",
+    },
+    "blockers": 3,
+    "findingIds": [
+      "apk-16kb:react-native-reanimated",
+      "apk-16kb:react-native-mmkv",
+      "apk-16kb:libdemo_native.so",
+      "play-aab-required",
+    ],
+    "ready": false,
+    "signing": {
+      "certificates": [
+        {
+          "sha256": "99:9E:F3:30:F3:F9:06:9E:C1:26:A5:1E:B5:31:67:28:3E:4D:23:51:A8:07:C1:A8:B8:EF:30:07:0C:68:17:4A",
+          "subject": "CN=Demo Release, O=Demo, C=US",
+          "validTo": "2060-12-23T05:31:16.000Z",
+        },
+      ],
+      "schemes": [
+        "v2",
+        "v3",
+      ],
+    },
+    "warnings": 0,
+  },
   "summary": {
     "blockers": 3,
-    "info": 0,
+    "info": 1,
     "warnings": 0,
   },
 }
@@ -1818,6 +1911,49 @@ exports[`examples > 09 16 KB (good.apk) 1`] = `
         "stored": false,
       },
     ],
+    "manifest": {
+      "available": true,
+      "manifest": {
+        "components": [
+          {
+            "exported": true,
+            "hasIntentFilter": true,
+            "name": "com.demo.scanner.MainActivity",
+            "type": "activity",
+          },
+        ],
+        "minSdk": 24,
+        "networkSecurityConfig": false,
+        "package": "com.demo.scanner",
+        "permissions": [
+          "android.permission.INTERNET",
+        ],
+        "targetSdk": 36,
+        "versionCode": 1,
+        "versionName": "1.0",
+      },
+    },
+    "signing": {
+      "certificates": [
+        {
+          "debug": false,
+          "schemes": [
+            "v2",
+            "v3",
+          ],
+          "sha256": "99:9E:F3:30:F3:F9:06:9E:C1:26:A5:1E:B5:31:67:28:3E:4D:23:51:A8:07:C1:A8:B8:EF:30:07:0C:68:17:4A",
+          "subject": "CN=Demo Release, O=Demo, C=US",
+          "validFrom": "2026-01-01T05:31:16.000Z",
+          "validTo": "2060-12-23T05:31:16.000Z",
+        },
+      ],
+      "debugSigned": false,
+      "schemes": [
+        "v2",
+        "v3",
+      ],
+      "unsigned": false,
+    },
   },
   "dependencies": [
     {
@@ -1894,7 +2030,15 @@ exports[`examples > 09 16 KB (good.apk) 1`] = `
       "id": "apk-16kb-ok",
       "severity": "info",
       "source": "APK scan (APK)",
-      "title": "All 4 64-bit native libraries are 16 KB page-size compatible",
+      "title": "All 3 64-bit native libraries are 16 KB page-size compatible",
+    },
+    {
+      "docs": "https://developer.android.com/guide/app-bundle",
+      "fix": "Upload the AAB of the same build (./gradlew bundleRelease).",
+      "id": "play-aab-required",
+      "severity": "info",
+      "source": "APK scan (APK)",
+      "title": "Google Play needs an Android App Bundle (AAB) for new apps; this APK check is a pre-upload check",
     },
   ],
   "meta": {
@@ -1903,6 +2047,7 @@ exports[`examples > 09 16 KB (good.apk) 1`] = `
     "latestReactNative": "0.87.1",
     "latestReactNativeSource": "npm registry (cache)",
     "lockfile": "package-lock.json",
+    "mode": "project",
     "offline": true,
     "packageManager": "npm",
     "reactNativeVersion": "0.87.1",
@@ -1919,9 +2064,37 @@ exports[`examples > 09 16 KB (good.apk) 1`] = `
     "targetVersion": "0.87.1",
   },
   "patches": [],
+  "playStore": {
+    "app": {
+      "minSdk": 24,
+      "package": "com.demo.scanner",
+      "targetSdk": 36,
+      "versionCode": 1,
+      "versionName": "1.0",
+    },
+    "blockers": 0,
+    "findingIds": [
+      "play-aab-required",
+    ],
+    "ready": true,
+    "signing": {
+      "certificates": [
+        {
+          "sha256": "99:9E:F3:30:F3:F9:06:9E:C1:26:A5:1E:B5:31:67:28:3E:4D:23:51:A8:07:C1:A8:B8:EF:30:07:0C:68:17:4A",
+          "subject": "CN=Demo Release, O=Demo, C=US",
+          "validTo": "2060-12-23T05:31:16.000Z",
+        },
+      ],
+      "schemes": [
+        "v2",
+        "v3",
+      ],
+    },
+    "warnings": 0,
+  },
   "summary": {
     "blockers": 0,
-    "info": 1,
+    "info": 2,
     "warnings": 0,
   },
 }
@@ -2005,6 +2178,7 @@ exports[`examples > 09 16 KB (no APK) 1`] = `
     "latestReactNative": "0.87.1",
     "latestReactNativeSource": "npm registry (cache)",
     "lockfile": "package-lock.json",
+    "mode": "project",
     "offline": true,
     "packageManager": "npm",
     "reactNativeVersion": "0.87.1",
@@ -2500,6 +2674,7 @@ exports[`examples > 10 everything broken 1`] = `
     "latestReactNative": "0.87.1",
     "latestReactNativeSource": "npm registry (cache)",
     "lockfile": "package-lock.json",
+    "mode": "project",
     "offline": true,
     "packageManager": "npm",
     "reactNativeVersion": "0.68.7",
@@ -2683,6 +2858,7 @@ exports[`examples > 11 unknown RN version 1`] = `
   "meta": {
     "cwd": "<repo>/examples/11-unknown-rn-version",
     "latestReactNativeSource": "skipped (not from the npm registry)",
+    "mode": "project",
     "offline": true,
     "reactNativeVersionSource": "package.json",
     "scannedAt": "<time>",
@@ -2807,6 +2983,7 @@ exports[`examples > 13 registry data missing 1`] = `
     "latestReactNative": "0.87.1",
     "latestReactNativeSource": "npm registry (cache)",
     "lockfile": "package-lock.json",
+    "mode": "project",
     "offline": true,
     "packageManager": "npm",
     "reactNativeVersion": "0.86.0",
@@ -3018,6 +3195,7 @@ exports[`examples > 14 monorepo 1`] = `
     "latestReactNative": "0.87.1",
     "latestReactNativeSource": "npm registry (cache)",
     "lockfile": "../../yarn.lock",
+    "mode": "project",
     "offline": true,
     "packageManager": "yarn",
     "reactNativeVersion": "0.87.1",
@@ -3143,6 +3321,1901 @@ exports[`examples > 14 monorepo 1`] = `
   "summary": {
     "blockers": 0,
     "info": 1,
+    "warnings": 0,
+  },
+}
+`;
+
+exports[`examples > 15 Play Store (32-bit only) 1`] = `
+{
+  "apk": {
+    "file": "<tmp>/32bit-only.apk",
+    "kind": "apk",
+    "libs": [
+      {
+        "abi": "armeabi-v7a",
+        "elfOk": true,
+        "is64Bit": false,
+        "loadAlign": 4096,
+        "name": "libreactnative.so",
+        "package": "react-native",
+        "packageSource": "known table (React Native core)",
+        "path": "lib/armeabi-v7a/libreactnative.so",
+        "stored": false,
+      },
+    ],
+    "manifest": {
+      "available": true,
+      "manifest": {
+        "components": [
+          {
+            "exported": true,
+            "hasIntentFilter": true,
+            "name": "com.demo.scanner.MainActivity",
+            "type": "activity",
+          },
+        ],
+        "minSdk": 24,
+        "networkSecurityConfig": false,
+        "package": "com.demo.scanner",
+        "permissions": [
+          "android.permission.INTERNET",
+        ],
+        "targetSdk": 36,
+        "versionCode": 1,
+        "versionName": "1.0",
+      },
+    },
+    "signing": {
+      "certificates": [
+        {
+          "debug": false,
+          "schemes": [
+            "v2",
+            "v3",
+          ],
+          "sha256": "99:9E:F3:30:F3:F9:06:9E:C1:26:A5:1E:B5:31:67:28:3E:4D:23:51:A8:07:C1:A8:B8:EF:30:07:0C:68:17:4A",
+          "subject": "CN=Demo Release, O=Demo, C=US",
+          "validFrom": "2026-01-01T05:31:16.000Z",
+          "validTo": "2060-12-23T05:31:16.000Z",
+        },
+      ],
+      "debugSigned": false,
+      "schemes": [
+        "v2",
+        "v3",
+      ],
+      "unsigned": false,
+    },
+  },
+  "dependencies": [],
+  "findings": [
+    {
+      "id": "apk-16kb-ok",
+      "severity": "info",
+      "source": "APK scan (APK)",
+      "title": "No 64-bit native libraries found in the build",
+    },
+    {
+      "detail": "Google Play requires apps with native code to include 64-bit versions (arm64-v8a, and x86_64 if you ship x86).",
+      "docs": "https://developer.android.com/google/play/requirements/64-bit",
+      "fix": "Add arm64-v8a (and x86_64) to reactNativeArchitectures in android/gradle.properties or abiFilters in android/app/build.gradle.",
+      "id": "play-64bit",
+      "severity": "blocker",
+      "source": "APK scan (APK)",
+      "title": "Native libraries are only built for 32-bit ABIs (armeabi-v7a)",
+    },
+    {
+      "docs": "https://developer.android.com/guide/app-bundle",
+      "fix": "Upload the AAB of the same build (./gradlew bundleRelease).",
+      "id": "play-aab-required",
+      "severity": "info",
+      "source": "APK scan (APK)",
+      "title": "Google Play needs an Android App Bundle (AAB) for new apps; this APK check is a pre-upload check",
+    },
+  ],
+  "meta": {
+    "apk": "<tmp>/32bit-only.apk",
+    "cwd": "<repo>/examples/15-play-store",
+    "mode": "apk-only",
+    "offline": true,
+    "scannedAt": "<time>",
+    "tool": "rn-upgrade-doctor",
+    "version": "<version>",
+  },
+  "native": {
+    "currentSource": "not looked up",
+    "rows": [],
+    "targetSource": "not looked up",
+  },
+  "patches": [],
+  "playStore": {
+    "app": {
+      "minSdk": 24,
+      "package": "com.demo.scanner",
+      "targetSdk": 36,
+      "versionCode": 1,
+      "versionName": "1.0",
+    },
+    "blockers": 1,
+    "findingIds": [
+      "play-64bit",
+      "play-aab-required",
+    ],
+    "ready": false,
+    "signing": {
+      "certificates": [
+        {
+          "sha256": "99:9E:F3:30:F3:F9:06:9E:C1:26:A5:1E:B5:31:67:28:3E:4D:23:51:A8:07:C1:A8:B8:EF:30:07:0C:68:17:4A",
+          "subject": "CN=Demo Release, O=Demo, C=US",
+          "validTo": "2060-12-23T05:31:16.000Z",
+        },
+      ],
+      "schemes": [
+        "v2",
+        "v3",
+      ],
+    },
+    "warnings": 0,
+  },
+  "summary": {
+    "blockers": 1,
+    "info": 2,
+    "warnings": 0,
+  },
+}
+`;
+
+exports[`examples > 15 Play Store (AAB) 1`] = `
+{
+  "apk": {
+    "file": "<tmp>/app-release.aab",
+    "kind": "aab",
+    "libs": [
+      {
+        "abi": "arm64-v8a",
+        "elfOk": true,
+        "is64Bit": true,
+        "loadAlign": 16384,
+        "name": "libreactnative.so",
+        "package": "react-native",
+        "packageSource": "known table (React Native core)",
+        "path": "base/lib/arm64-v8a/libreactnative.so",
+        "stored": false,
+      },
+    ],
+    "manifest": {
+      "available": false,
+      "reason": "Manifest checks need an APK: an AAB stores its manifest in protobuf format.",
+    },
+    "signing": {
+      "certificates": [
+        {
+          "debug": false,
+          "schemes": [
+            "v1",
+          ],
+          "sha256": "99:9E:F3:30:F3:F9:06:9E:C1:26:A5:1E:B5:31:67:28:3E:4D:23:51:A8:07:C1:A8:B8:EF:30:07:0C:68:17:4A",
+          "subject": "CN=Demo Release, O=Demo, C=US",
+          "validFrom": "2026-01-01T05:31:16.000Z",
+          "validTo": "2060-12-23T05:31:16.000Z",
+        },
+      ],
+      "debugSigned": false,
+      "schemes": [
+        "v1",
+      ],
+      "unsigned": false,
+    },
+  },
+  "dependencies": [],
+  "findings": [
+    {
+      "id": "apk-16kb-ok",
+      "severity": "info",
+      "source": "APK scan (AAB)",
+      "title": "The only 64-bit native library is 16 KB page-size compatible",
+    },
+    {
+      "detail": "Manifest checks need an APK: an AAB stores its manifest in protobuf format. Target API level, debuggable, exported components, permissions and cleartext were not checked.",
+      "fix": "Run the scan on a release APK of the same build to include them.",
+      "id": "play-manifest-unavailable",
+      "severity": "info",
+      "source": "APK manifest (AAB)",
+      "title": "Manifest checks did not run",
+    },
+  ],
+  "meta": {
+    "apk": "<tmp>/app-release.aab",
+    "cwd": "<repo>/examples/15-play-store",
+    "mode": "apk-only",
+    "offline": true,
+    "scannedAt": "<time>",
+    "tool": "rn-upgrade-doctor",
+    "version": "<version>",
+  },
+  "native": {
+    "currentSource": "not looked up",
+    "rows": [],
+    "targetSource": "not looked up",
+  },
+  "patches": [],
+  "playStore": {
+    "blockers": 0,
+    "findingIds": [
+      "play-manifest-unavailable",
+    ],
+    "ready": true,
+    "signing": {
+      "certificates": [
+        {
+          "sha256": "99:9E:F3:30:F3:F9:06:9E:C1:26:A5:1E:B5:31:67:28:3E:4D:23:51:A8:07:C1:A8:B8:EF:30:07:0C:68:17:4A",
+          "subject": "CN=Demo Release, O=Demo, C=US",
+          "validTo": "2060-12-23T05:31:16.000Z",
+        },
+      ],
+      "schemes": [
+        "v1",
+      ],
+    },
+    "warnings": 0,
+  },
+  "summary": {
+    "blockers": 0,
+    "info": 2,
+    "warnings": 0,
+  },
+}
+`;
+
+exports[`examples > 15 Play Store (SMS permission) 1`] = `
+{
+  "apk": {
+    "file": "<tmp>/sms-permission.apk",
+    "kind": "apk",
+    "libs": [
+      {
+        "abi": "arm64-v8a",
+        "elfOk": true,
+        "is64Bit": true,
+        "loadAlign": 16384,
+        "name": "libreactnative.so",
+        "package": "react-native",
+        "packageSource": "known table (React Native core)",
+        "path": "lib/arm64-v8a/libreactnative.so",
+        "stored": true,
+        "zipAligned": true,
+      },
+      {
+        "abi": "x86_64",
+        "elfOk": true,
+        "is64Bit": true,
+        "loadAlign": 16384,
+        "name": "libreactnative.so",
+        "package": "react-native",
+        "packageSource": "known table (React Native core)",
+        "path": "lib/x86_64/libreactnative.so",
+        "stored": true,
+        "zipAligned": true,
+      },
+    ],
+    "manifest": {
+      "available": true,
+      "manifest": {
+        "components": [
+          {
+            "exported": true,
+            "hasIntentFilter": true,
+            "name": "com.demo.scanner.MainActivity",
+            "type": "activity",
+          },
+        ],
+        "minSdk": 24,
+        "networkSecurityConfig": false,
+        "package": "com.demo.scanner",
+        "permissions": [
+          "android.permission.INTERNET",
+          "android.permission.READ_SMS",
+        ],
+        "targetSdk": 36,
+        "versionCode": 1,
+        "versionName": "1.0",
+      },
+    },
+    "signing": {
+      "certificates": [
+        {
+          "debug": false,
+          "schemes": [
+            "v2",
+            "v3",
+          ],
+          "sha256": "99:9E:F3:30:F3:F9:06:9E:C1:26:A5:1E:B5:31:67:28:3E:4D:23:51:A8:07:C1:A8:B8:EF:30:07:0C:68:17:4A",
+          "subject": "CN=Demo Release, O=Demo, C=US",
+          "validFrom": "2026-01-01T05:31:16.000Z",
+          "validTo": "2060-12-23T05:31:16.000Z",
+        },
+      ],
+      "debugSigned": false,
+      "schemes": [
+        "v2",
+        "v3",
+      ],
+      "unsigned": false,
+    },
+  },
+  "dependencies": [],
+  "findings": [
+    {
+      "id": "apk-16kb-ok",
+      "severity": "info",
+      "source": "APK scan (APK)",
+      "title": "The only 64-bit native library is 16 KB page-size compatible",
+    },
+    {
+      "docs": "https://developer.android.com/guide/app-bundle",
+      "fix": "Upload the AAB of the same build (./gradlew bundleRelease).",
+      "id": "play-aab-required",
+      "severity": "info",
+      "source": "APK scan (APK)",
+      "title": "Google Play needs an Android App Bundle (AAB) for new apps; this APK check is a pre-upload check",
+    },
+    {
+      "detail": "Google Play only allows this permission for qualifying core functionality, declared in Play Console before review.",
+      "docs": "https://support.google.com/googleplay/android-developer/answer/10208820",
+      "fix": "Remove the permission if the app does not need it (also check what your libraries add), or fill in the declaration form.",
+      "id": "play-permission:READ_SMS",
+      "severity": "warning",
+      "source": "APK manifest (APK)",
+      "title": "READ_SMS needs a permissions declaration in Play Console (SMS and Call Log permissions)",
+    },
+  ],
+  "meta": {
+    "apk": "<tmp>/sms-permission.apk",
+    "cwd": "<repo>/examples/15-play-store",
+    "mode": "apk-only",
+    "offline": true,
+    "scannedAt": "<time>",
+    "tool": "rn-upgrade-doctor",
+    "version": "<version>",
+  },
+  "native": {
+    "currentSource": "not looked up",
+    "rows": [],
+    "targetSource": "not looked up",
+  },
+  "patches": [],
+  "playStore": {
+    "app": {
+      "minSdk": 24,
+      "package": "com.demo.scanner",
+      "targetSdk": 36,
+      "versionCode": 1,
+      "versionName": "1.0",
+    },
+    "blockers": 0,
+    "findingIds": [
+      "play-permission:READ_SMS",
+      "play-aab-required",
+    ],
+    "ready": true,
+    "signing": {
+      "certificates": [
+        {
+          "sha256": "99:9E:F3:30:F3:F9:06:9E:C1:26:A5:1E:B5:31:67:28:3E:4D:23:51:A8:07:C1:A8:B8:EF:30:07:0C:68:17:4A",
+          "subject": "CN=Demo Release, O=Demo, C=US",
+          "validTo": "2060-12-23T05:31:16.000Z",
+        },
+      ],
+      "schemes": [
+        "v2",
+        "v3",
+      ],
+    },
+    "warnings": 1,
+  },
+  "summary": {
+    "blockers": 0,
+    "info": 2,
+    "warnings": 1,
+  },
+}
+`;
+
+exports[`examples > 15 Play Store (certificate ends before 2033) 1`] = `
+{
+  "apk": {
+    "file": "<tmp>/cert-before-2033.apk",
+    "kind": "apk",
+    "libs": [
+      {
+        "abi": "arm64-v8a",
+        "elfOk": true,
+        "is64Bit": true,
+        "loadAlign": 16384,
+        "name": "libreactnative.so",
+        "package": "react-native",
+        "packageSource": "known table (React Native core)",
+        "path": "lib/arm64-v8a/libreactnative.so",
+        "stored": true,
+        "zipAligned": true,
+      },
+      {
+        "abi": "x86_64",
+        "elfOk": true,
+        "is64Bit": true,
+        "loadAlign": 16384,
+        "name": "libreactnative.so",
+        "package": "react-native",
+        "packageSource": "known table (React Native core)",
+        "path": "lib/x86_64/libreactnative.so",
+        "stored": true,
+        "zipAligned": true,
+      },
+    ],
+    "manifest": {
+      "available": true,
+      "manifest": {
+        "components": [
+          {
+            "exported": true,
+            "hasIntentFilter": true,
+            "name": "com.demo.scanner.MainActivity",
+            "type": "activity",
+          },
+        ],
+        "minSdk": 24,
+        "networkSecurityConfig": false,
+        "package": "com.demo.scanner",
+        "permissions": [
+          "android.permission.INTERNET",
+        ],
+        "targetSdk": 36,
+        "versionCode": 1,
+        "versionName": "1.0",
+      },
+    },
+    "signing": {
+      "certificates": [
+        {
+          "debug": false,
+          "schemes": [
+            "v2",
+            "v3",
+          ],
+          "sha256": "E4:98:C1:8E:CD:4F:24:94:B9:CD:4A:1E:23:83:9A:9A:99:5C:1D:D0:6D:5C:F9:7F:17:17:C9:47:8E:B0:FE:93",
+          "subject": "CN=Demo Short, O=Demo, C=US",
+          "validFrom": "2026-01-01T07:10:12.000Z",
+          "validTo": "2033-06-30T07:10:12.000Z",
+        },
+      ],
+      "debugSigned": false,
+      "schemes": [
+        "v2",
+        "v3",
+      ],
+      "unsigned": false,
+    },
+  },
+  "dependencies": [],
+  "findings": [
+    {
+      "id": "apk-16kb-ok",
+      "severity": "info",
+      "source": "APK scan (APK)",
+      "title": "The only 64-bit native library is 16 KB page-size compatible",
+    },
+    {
+      "docs": "https://developer.android.com/guide/app-bundle",
+      "fix": "Upload the AAB of the same build (./gradlew bundleRelease).",
+      "id": "play-aab-required",
+      "severity": "info",
+      "source": "APK scan (APK)",
+      "title": "Google Play needs an Android App Bundle (AAB) for new apps; this APK check is a pre-upload check",
+    },
+    {
+      "docs": "https://developer.android.com/studio/publish/app-signing",
+      "fix": "Create a key valid for 25 years or more and use it as your upload key.",
+      "id": "play-cert-validity",
+      "severity": "blocker",
+      "source": "APK signature (APK)",
+      "title": "Signing certificate is valid only until 2033-06-30; Google Play needs validity after 22 Oct 2033 (CN=Demo Short, O=Demo, C=US)",
+    },
+  ],
+  "meta": {
+    "apk": "<tmp>/cert-before-2033.apk",
+    "cwd": "<repo>/examples/15-play-store",
+    "mode": "apk-only",
+    "offline": true,
+    "scannedAt": "<time>",
+    "tool": "rn-upgrade-doctor",
+    "version": "<version>",
+  },
+  "native": {
+    "currentSource": "not looked up",
+    "rows": [],
+    "targetSource": "not looked up",
+  },
+  "patches": [],
+  "playStore": {
+    "app": {
+      "minSdk": 24,
+      "package": "com.demo.scanner",
+      "targetSdk": 36,
+      "versionCode": 1,
+      "versionName": "1.0",
+    },
+    "blockers": 1,
+    "findingIds": [
+      "play-cert-validity",
+      "play-aab-required",
+    ],
+    "ready": false,
+    "signing": {
+      "certificates": [
+        {
+          "sha256": "E4:98:C1:8E:CD:4F:24:94:B9:CD:4A:1E:23:83:9A:9A:99:5C:1D:D0:6D:5C:F9:7F:17:17:C9:47:8E:B0:FE:93",
+          "subject": "CN=Demo Short, O=Demo, C=US",
+          "validTo": "2033-06-30T07:10:12.000Z",
+        },
+      ],
+      "schemes": [
+        "v2",
+        "v3",
+      ],
+    },
+    "warnings": 0,
+  },
+  "summary": {
+    "blockers": 1,
+    "info": 2,
+    "warnings": 0,
+  },
+}
+`;
+
+exports[`examples > 15 Play Store (cleartext) 1`] = `
+{
+  "apk": {
+    "file": "<tmp>/cleartext.apk",
+    "kind": "apk",
+    "libs": [
+      {
+        "abi": "arm64-v8a",
+        "elfOk": true,
+        "is64Bit": true,
+        "loadAlign": 16384,
+        "name": "libreactnative.so",
+        "package": "react-native",
+        "packageSource": "known table (React Native core)",
+        "path": "lib/arm64-v8a/libreactnative.so",
+        "stored": true,
+        "zipAligned": true,
+      },
+      {
+        "abi": "x86_64",
+        "elfOk": true,
+        "is64Bit": true,
+        "loadAlign": 16384,
+        "name": "libreactnative.so",
+        "package": "react-native",
+        "packageSource": "known table (React Native core)",
+        "path": "lib/x86_64/libreactnative.so",
+        "stored": true,
+        "zipAligned": true,
+      },
+    ],
+    "manifest": {
+      "available": true,
+      "manifest": {
+        "components": [
+          {
+            "exported": true,
+            "hasIntentFilter": true,
+            "name": "com.demo.scanner.MainActivity",
+            "type": "activity",
+          },
+        ],
+        "minSdk": 24,
+        "networkSecurityConfig": false,
+        "package": "com.demo.scanner",
+        "permissions": [
+          "android.permission.INTERNET",
+        ],
+        "targetSdk": 36,
+        "usesCleartextTraffic": true,
+        "versionCode": 1,
+        "versionName": "1.0",
+      },
+    },
+    "signing": {
+      "certificates": [
+        {
+          "debug": false,
+          "schemes": [
+            "v2",
+            "v3",
+          ],
+          "sha256": "99:9E:F3:30:F3:F9:06:9E:C1:26:A5:1E:B5:31:67:28:3E:4D:23:51:A8:07:C1:A8:B8:EF:30:07:0C:68:17:4A",
+          "subject": "CN=Demo Release, O=Demo, C=US",
+          "validFrom": "2026-01-01T05:31:16.000Z",
+          "validTo": "2060-12-23T05:31:16.000Z",
+        },
+      ],
+      "debugSigned": false,
+      "schemes": [
+        "v2",
+        "v3",
+      ],
+      "unsigned": false,
+    },
+  },
+  "dependencies": [],
+  "findings": [
+    {
+      "id": "apk-16kb-ok",
+      "severity": "info",
+      "source": "APK scan (APK)",
+      "title": "The only 64-bit native library is 16 KB page-size compatible",
+    },
+    {
+      "docs": "https://developer.android.com/guide/app-bundle",
+      "fix": "Upload the AAB of the same build (./gradlew bundleRelease).",
+      "id": "play-aab-required",
+      "severity": "info",
+      "source": "APK scan (APK)",
+      "title": "Google Play needs an Android App Bundle (AAB) for new apps; this APK check is a pre-upload check",
+    },
+    {
+      "detail": "Unencrypted traffic can be read or changed on the network. It is often left over from a debug setup.",
+      "docs": "https://developer.android.com/privacy-and-security/security-config",
+      "fix": "Remove usesCleartextTraffic, or allow cleartext only for specific domains with a network security config.",
+      "id": "play-cleartext",
+      "severity": "warning",
+      "source": "APK manifest (APK)",
+      "title": "Cleartext HTTP is allowed for all domains (android:usesCleartextTraffic="true")",
+    },
+  ],
+  "meta": {
+    "apk": "<tmp>/cleartext.apk",
+    "cwd": "<repo>/examples/15-play-store",
+    "mode": "apk-only",
+    "offline": true,
+    "scannedAt": "<time>",
+    "tool": "rn-upgrade-doctor",
+    "version": "<version>",
+  },
+  "native": {
+    "currentSource": "not looked up",
+    "rows": [],
+    "targetSource": "not looked up",
+  },
+  "patches": [],
+  "playStore": {
+    "app": {
+      "minSdk": 24,
+      "package": "com.demo.scanner",
+      "targetSdk": 36,
+      "versionCode": 1,
+      "versionName": "1.0",
+    },
+    "blockers": 0,
+    "findingIds": [
+      "play-cleartext",
+      "play-aab-required",
+    ],
+    "ready": true,
+    "signing": {
+      "certificates": [
+        {
+          "sha256": "99:9E:F3:30:F3:F9:06:9E:C1:26:A5:1E:B5:31:67:28:3E:4D:23:51:A8:07:C1:A8:B8:EF:30:07:0C:68:17:4A",
+          "subject": "CN=Demo Release, O=Demo, C=US",
+          "validTo": "2060-12-23T05:31:16.000Z",
+        },
+      ],
+      "schemes": [
+        "v2",
+        "v3",
+      ],
+    },
+    "warnings": 1,
+  },
+  "summary": {
+    "blockers": 0,
+    "info": 2,
+    "warnings": 1,
+  },
+}
+`;
+
+exports[`examples > 15 Play Store (debug-signed) 1`] = `
+{
+  "apk": {
+    "file": "<tmp>/debug-signed.apk",
+    "kind": "apk",
+    "libs": [
+      {
+        "abi": "arm64-v8a",
+        "elfOk": true,
+        "is64Bit": true,
+        "loadAlign": 16384,
+        "name": "libreactnative.so",
+        "package": "react-native",
+        "packageSource": "known table (React Native core)",
+        "path": "lib/arm64-v8a/libreactnative.so",
+        "stored": true,
+        "zipAligned": true,
+      },
+      {
+        "abi": "x86_64",
+        "elfOk": true,
+        "is64Bit": true,
+        "loadAlign": 16384,
+        "name": "libreactnative.so",
+        "package": "react-native",
+        "packageSource": "known table (React Native core)",
+        "path": "lib/x86_64/libreactnative.so",
+        "stored": true,
+        "zipAligned": true,
+      },
+    ],
+    "manifest": {
+      "available": true,
+      "manifest": {
+        "components": [
+          {
+            "exported": true,
+            "hasIntentFilter": true,
+            "name": "com.demo.scanner.MainActivity",
+            "type": "activity",
+          },
+        ],
+        "minSdk": 24,
+        "networkSecurityConfig": false,
+        "package": "com.demo.scanner",
+        "permissions": [
+          "android.permission.INTERNET",
+        ],
+        "targetSdk": 36,
+        "versionCode": 1,
+        "versionName": "1.0",
+      },
+    },
+    "signing": {
+      "certificates": [
+        {
+          "debug": true,
+          "schemes": [
+            "v2",
+            "v3",
+          ],
+          "sha256": "DB:77:2D:CB:26:BA:28:F3:88:81:CD:0F:2C:3E:A6:D3:A2:2A:35:93:7A:01:1B:5B:C4:57:E3:3F:15:34:56:5A",
+          "subject": "CN=Android Debug, O=Android, C=US",
+          "validFrom": "2026-01-01T05:31:16.000Z",
+          "validTo": "2055-12-25T05:31:16.000Z",
+        },
+      ],
+      "debugSigned": true,
+      "schemes": [
+        "v2",
+        "v3",
+      ],
+      "unsigned": false,
+    },
+  },
+  "dependencies": [],
+  "findings": [
+    {
+      "id": "apk-16kb-ok",
+      "severity": "info",
+      "source": "APK scan (APK)",
+      "title": "The only 64-bit native library is 16 KB page-size compatible",
+    },
+    {
+      "docs": "https://developer.android.com/guide/app-bundle",
+      "fix": "Upload the AAB of the same build (./gradlew bundleRelease).",
+      "id": "play-aab-required",
+      "severity": "info",
+      "source": "APK scan (APK)",
+      "title": "Google Play needs an Android App Bundle (AAB) for new apps; this APK check is a pre-upload check",
+    },
+    {
+      "detail": "Google Play rejects apps signed with the debug key. The React Native template signs release builds with the debug key until you configure your own.",
+      "docs": "https://developer.android.com/studio/publish/app-signing",
+      "fix": "Create an upload key and use it in the release signingConfig of android/app/build.gradle.",
+      "id": "play-debug-signed",
+      "severity": "blocker",
+      "source": "APK signature (APK)",
+      "title": "Signed with the Android debug key (CN=Android Debug)",
+    },
+  ],
+  "meta": {
+    "apk": "<tmp>/debug-signed.apk",
+    "cwd": "<repo>/examples/15-play-store",
+    "mode": "apk-only",
+    "offline": true,
+    "scannedAt": "<time>",
+    "tool": "rn-upgrade-doctor",
+    "version": "<version>",
+  },
+  "native": {
+    "currentSource": "not looked up",
+    "rows": [],
+    "targetSource": "not looked up",
+  },
+  "patches": [],
+  "playStore": {
+    "app": {
+      "minSdk": 24,
+      "package": "com.demo.scanner",
+      "targetSdk": 36,
+      "versionCode": 1,
+      "versionName": "1.0",
+    },
+    "blockers": 1,
+    "findingIds": [
+      "play-debug-signed",
+      "play-aab-required",
+    ],
+    "ready": false,
+    "signing": {
+      "certificates": [
+        {
+          "sha256": "DB:77:2D:CB:26:BA:28:F3:88:81:CD:0F:2C:3E:A6:D3:A2:2A:35:93:7A:01:1B:5B:C4:57:E3:3F:15:34:56:5A",
+          "subject": "CN=Android Debug, O=Android, C=US",
+          "validTo": "2055-12-25T05:31:16.000Z",
+        },
+      ],
+      "schemes": [
+        "v2",
+        "v3",
+      ],
+    },
+    "warnings": 0,
+  },
+  "summary": {
+    "blockers": 1,
+    "info": 2,
+    "warnings": 0,
+  },
+}
+`;
+
+exports[`examples > 15 Play Store (debuggable) 1`] = `
+{
+  "apk": {
+    "file": "<tmp>/debuggable.apk",
+    "kind": "apk",
+    "libs": [
+      {
+        "abi": "arm64-v8a",
+        "elfOk": true,
+        "is64Bit": true,
+        "loadAlign": 16384,
+        "name": "libreactnative.so",
+        "package": "react-native",
+        "packageSource": "known table (React Native core)",
+        "path": "lib/arm64-v8a/libreactnative.so",
+        "stored": true,
+        "zipAligned": true,
+      },
+      {
+        "abi": "x86_64",
+        "elfOk": true,
+        "is64Bit": true,
+        "loadAlign": 16384,
+        "name": "libreactnative.so",
+        "package": "react-native",
+        "packageSource": "known table (React Native core)",
+        "path": "lib/x86_64/libreactnative.so",
+        "stored": true,
+        "zipAligned": true,
+      },
+    ],
+    "manifest": {
+      "available": true,
+      "manifest": {
+        "components": [
+          {
+            "exported": true,
+            "hasIntentFilter": true,
+            "name": "com.demo.scanner.MainActivity",
+            "type": "activity",
+          },
+        ],
+        "debuggable": true,
+        "minSdk": 24,
+        "networkSecurityConfig": false,
+        "package": "com.demo.scanner",
+        "permissions": [
+          "android.permission.INTERNET",
+        ],
+        "targetSdk": 36,
+        "versionCode": 1,
+        "versionName": "1.0",
+      },
+    },
+    "signing": {
+      "certificates": [
+        {
+          "debug": false,
+          "schemes": [
+            "v2",
+            "v3",
+          ],
+          "sha256": "99:9E:F3:30:F3:F9:06:9E:C1:26:A5:1E:B5:31:67:28:3E:4D:23:51:A8:07:C1:A8:B8:EF:30:07:0C:68:17:4A",
+          "subject": "CN=Demo Release, O=Demo, C=US",
+          "validFrom": "2026-01-01T05:31:16.000Z",
+          "validTo": "2060-12-23T05:31:16.000Z",
+        },
+      ],
+      "debugSigned": false,
+      "schemes": [
+        "v2",
+        "v3",
+      ],
+      "unsigned": false,
+    },
+  },
+  "dependencies": [],
+  "findings": [
+    {
+      "id": "apk-16kb-ok",
+      "severity": "info",
+      "source": "APK scan (APK)",
+      "title": "The only 64-bit native library is 16 KB page-size compatible",
+    },
+    {
+      "docs": "https://developer.android.com/guide/app-bundle",
+      "fix": "Upload the AAB of the same build (./gradlew bundleRelease).",
+      "id": "play-aab-required",
+      "severity": "info",
+      "source": "APK scan (APK)",
+      "title": "Google Play needs an Android App Bundle (AAB) for new apps; this APK check is a pre-upload check",
+    },
+    {
+      "detail": "Google Play rejects debuggable builds. This usually means a debug build was uploaded instead of a release build.",
+      "docs": "https://developer.android.com/guide/topics/manifest/application-element",
+      "fix": "Build the release variant (./gradlew assembleRelease or bundleRelease) and do not set android:debuggable in the manifest.",
+      "id": "play-debuggable",
+      "severity": "blocker",
+      "source": "APK manifest (APK)",
+      "title": "The app is debuggable (android:debuggable="true")",
+    },
+  ],
+  "meta": {
+    "apk": "<tmp>/debuggable.apk",
+    "cwd": "<repo>/examples/15-play-store",
+    "mode": "apk-only",
+    "offline": true,
+    "scannedAt": "<time>",
+    "tool": "rn-upgrade-doctor",
+    "version": "<version>",
+  },
+  "native": {
+    "currentSource": "not looked up",
+    "rows": [],
+    "targetSource": "not looked up",
+  },
+  "patches": [],
+  "playStore": {
+    "app": {
+      "minSdk": 24,
+      "package": "com.demo.scanner",
+      "targetSdk": 36,
+      "versionCode": 1,
+      "versionName": "1.0",
+    },
+    "blockers": 1,
+    "findingIds": [
+      "play-debuggable",
+      "play-aab-required",
+    ],
+    "ready": false,
+    "signing": {
+      "certificates": [
+        {
+          "sha256": "99:9E:F3:30:F3:F9:06:9E:C1:26:A5:1E:B5:31:67:28:3E:4D:23:51:A8:07:C1:A8:B8:EF:30:07:0C:68:17:4A",
+          "subject": "CN=Demo Release, O=Demo, C=US",
+          "validTo": "2060-12-23T05:31:16.000Z",
+        },
+      ],
+      "schemes": [
+        "v2",
+        "v3",
+      ],
+    },
+    "warnings": 0,
+  },
+  "summary": {
+    "blockers": 1,
+    "info": 2,
+    "warnings": 0,
+  },
+}
+`;
+
+exports[`examples > 15 Play Store (expired certificate) 1`] = `
+{
+  "apk": {
+    "file": "<tmp>/cert-expired.apk",
+    "kind": "apk",
+    "libs": [
+      {
+        "abi": "arm64-v8a",
+        "elfOk": true,
+        "is64Bit": true,
+        "loadAlign": 16384,
+        "name": "libreactnative.so",
+        "package": "react-native",
+        "packageSource": "known table (React Native core)",
+        "path": "lib/arm64-v8a/libreactnative.so",
+        "stored": true,
+        "zipAligned": true,
+      },
+      {
+        "abi": "x86_64",
+        "elfOk": true,
+        "is64Bit": true,
+        "loadAlign": 16384,
+        "name": "libreactnative.so",
+        "package": "react-native",
+        "packageSource": "known table (React Native core)",
+        "path": "lib/x86_64/libreactnative.so",
+        "stored": true,
+        "zipAligned": true,
+      },
+    ],
+    "manifest": {
+      "available": true,
+      "manifest": {
+        "components": [
+          {
+            "exported": true,
+            "hasIntentFilter": true,
+            "name": "com.demo.scanner.MainActivity",
+            "type": "activity",
+          },
+        ],
+        "minSdk": 24,
+        "networkSecurityConfig": false,
+        "package": "com.demo.scanner",
+        "permissions": [
+          "android.permission.INTERNET",
+        ],
+        "targetSdk": 36,
+        "versionCode": 1,
+        "versionName": "1.0",
+      },
+    },
+    "signing": {
+      "certificates": [
+        {
+          "debug": false,
+          "schemes": [
+            "v2",
+            "v3",
+          ],
+          "sha256": "96:C5:78:5A:81:63:EB:C8:9F:5F:0D:19:00:40:1A:F0:63:E0:CD:DC:ED:F9:E3:88:52:50:E1:F9:1A:AF:3B:52",
+          "subject": "CN=Demo Expired, O=Demo, C=US",
+          "validFrom": "2000-01-01T05:31:16.000Z",
+          "validTo": "2000-12-31T05:31:16.000Z",
+        },
+      ],
+      "debugSigned": false,
+      "schemes": [
+        "v2",
+        "v3",
+      ],
+      "unsigned": false,
+    },
+  },
+  "dependencies": [],
+  "findings": [
+    {
+      "id": "apk-16kb-ok",
+      "severity": "info",
+      "source": "APK scan (APK)",
+      "title": "The only 64-bit native library is 16 KB page-size compatible",
+    },
+    {
+      "docs": "https://developer.android.com/guide/app-bundle",
+      "fix": "Upload the AAB of the same build (./gradlew bundleRelease).",
+      "id": "play-aab-required",
+      "severity": "info",
+      "source": "APK scan (APK)",
+      "title": "Google Play needs an Android App Bundle (AAB) for new apps; this APK check is a pre-upload check",
+    },
+    {
+      "docs": "https://developer.android.com/studio/publish/app-signing",
+      "fix": "Sign with a valid key. If this is your app signing key, contact Google Play support about key upgrade options.",
+      "id": "play-cert-expired",
+      "severity": "blocker",
+      "source": "APK signature (APK)",
+      "title": "Signing certificate expired on 2000-12-31 (CN=Demo Expired, O=Demo, C=US)",
+    },
+  ],
+  "meta": {
+    "apk": "<tmp>/cert-expired.apk",
+    "cwd": "<repo>/examples/15-play-store",
+    "mode": "apk-only",
+    "offline": true,
+    "scannedAt": "<time>",
+    "tool": "rn-upgrade-doctor",
+    "version": "<version>",
+  },
+  "native": {
+    "currentSource": "not looked up",
+    "rows": [],
+    "targetSource": "not looked up",
+  },
+  "patches": [],
+  "playStore": {
+    "app": {
+      "minSdk": 24,
+      "package": "com.demo.scanner",
+      "targetSdk": 36,
+      "versionCode": 1,
+      "versionName": "1.0",
+    },
+    "blockers": 1,
+    "findingIds": [
+      "play-cert-expired",
+      "play-aab-required",
+    ],
+    "ready": false,
+    "signing": {
+      "certificates": [
+        {
+          "sha256": "96:C5:78:5A:81:63:EB:C8:9F:5F:0D:19:00:40:1A:F0:63:E0:CD:DC:ED:F9:E3:88:52:50:E1:F9:1A:AF:3B:52",
+          "subject": "CN=Demo Expired, O=Demo, C=US",
+          "validTo": "2000-12-31T05:31:16.000Z",
+        },
+      ],
+      "schemes": [
+        "v2",
+        "v3",
+      ],
+    },
+    "warnings": 0,
+  },
+  "summary": {
+    "blockers": 1,
+    "info": 2,
+    "warnings": 0,
+  },
+}
+`;
+
+exports[`examples > 15 Play Store (missing exported) 1`] = `
+{
+  "apk": {
+    "file": "<tmp>/missing-exported.apk",
+    "kind": "apk",
+    "libs": [
+      {
+        "abi": "arm64-v8a",
+        "elfOk": true,
+        "is64Bit": true,
+        "loadAlign": 16384,
+        "name": "libreactnative.so",
+        "package": "react-native",
+        "packageSource": "known table (React Native core)",
+        "path": "lib/arm64-v8a/libreactnative.so",
+        "stored": true,
+        "zipAligned": true,
+      },
+      {
+        "abi": "x86_64",
+        "elfOk": true,
+        "is64Bit": true,
+        "loadAlign": 16384,
+        "name": "libreactnative.so",
+        "package": "react-native",
+        "packageSource": "known table (React Native core)",
+        "path": "lib/x86_64/libreactnative.so",
+        "stored": true,
+        "zipAligned": true,
+      },
+    ],
+    "manifest": {
+      "available": true,
+      "manifest": {
+        "components": [
+          {
+            "exported": true,
+            "hasIntentFilter": true,
+            "name": "com.demo.scanner.MainActivity",
+            "type": "activity",
+          },
+          {
+            "hasIntentFilter": true,
+            "name": "com.demo.scanner.SyncService",
+            "type": "service",
+          },
+          {
+            "hasIntentFilter": true,
+            "name": "com.demo.scanner.BootReceiver",
+            "type": "receiver",
+          },
+        ],
+        "minSdk": 24,
+        "networkSecurityConfig": false,
+        "package": "com.demo.scanner",
+        "permissions": [
+          "android.permission.INTERNET",
+        ],
+        "targetSdk": 36,
+        "versionCode": 1,
+        "versionName": "1.0",
+      },
+    },
+    "signing": {
+      "certificates": [
+        {
+          "debug": false,
+          "schemes": [
+            "v2",
+            "v3",
+          ],
+          "sha256": "99:9E:F3:30:F3:F9:06:9E:C1:26:A5:1E:B5:31:67:28:3E:4D:23:51:A8:07:C1:A8:B8:EF:30:07:0C:68:17:4A",
+          "subject": "CN=Demo Release, O=Demo, C=US",
+          "validFrom": "2026-01-01T05:31:16.000Z",
+          "validTo": "2060-12-23T05:31:16.000Z",
+        },
+      ],
+      "debugSigned": false,
+      "schemes": [
+        "v2",
+        "v3",
+      ],
+      "unsigned": false,
+    },
+  },
+  "dependencies": [],
+  "findings": [
+    {
+      "id": "apk-16kb-ok",
+      "severity": "info",
+      "source": "APK scan (APK)",
+      "title": "The only 64-bit native library is 16 KB page-size compatible",
+    },
+    {
+      "docs": "https://developer.android.com/guide/app-bundle",
+      "fix": "Upload the AAB of the same build (./gradlew bundleRelease).",
+      "id": "play-aab-required",
+      "severity": "info",
+      "source": "APK scan (APK)",
+      "title": "Google Play needs an Android App Bundle (AAB) for new apps; this APK check is a pre-upload check",
+    },
+    {
+      "detail": "Apps targeting Android 12+ cannot be installed when an activity, service or receiver with an intent filter does not set android:exported: service com.demo.scanner.SyncService, receiver com.demo.scanner.BootReceiver.",
+      "docs": "https://developer.android.com/about/versions/12/behavior-changes-12",
+      "fix": "Set android:exported="true" for the launcher activity and components other apps must reach, "false" for everything else.",
+      "id": "play-exported",
+      "severity": "blocker",
+      "source": "APK manifest (APK)",
+      "title": "2 components have an intent filter but no android:exported",
+    },
+  ],
+  "meta": {
+    "apk": "<tmp>/missing-exported.apk",
+    "cwd": "<repo>/examples/15-play-store",
+    "mode": "apk-only",
+    "offline": true,
+    "scannedAt": "<time>",
+    "tool": "rn-upgrade-doctor",
+    "version": "<version>",
+  },
+  "native": {
+    "currentSource": "not looked up",
+    "rows": [],
+    "targetSource": "not looked up",
+  },
+  "patches": [],
+  "playStore": {
+    "app": {
+      "minSdk": 24,
+      "package": "com.demo.scanner",
+      "targetSdk": 36,
+      "versionCode": 1,
+      "versionName": "1.0",
+    },
+    "blockers": 1,
+    "findingIds": [
+      "play-exported",
+      "play-aab-required",
+    ],
+    "ready": false,
+    "signing": {
+      "certificates": [
+        {
+          "sha256": "99:9E:F3:30:F3:F9:06:9E:C1:26:A5:1E:B5:31:67:28:3E:4D:23:51:A8:07:C1:A8:B8:EF:30:07:0C:68:17:4A",
+          "subject": "CN=Demo Release, O=Demo, C=US",
+          "validTo": "2060-12-23T05:31:16.000Z",
+        },
+      ],
+      "schemes": [
+        "v2",
+        "v3",
+      ],
+    },
+    "warnings": 0,
+  },
+  "summary": {
+    "blockers": 1,
+    "info": 2,
+    "warnings": 0,
+  },
+}
+`;
+
+exports[`examples > 15 Play Store (ready) 1`] = `
+{
+  "apk": {
+    "file": "<tmp>/ready.apk",
+    "kind": "apk",
+    "libs": [
+      {
+        "abi": "arm64-v8a",
+        "elfOk": true,
+        "is64Bit": true,
+        "loadAlign": 16384,
+        "name": "libreactnative.so",
+        "package": "react-native",
+        "packageSource": "known table (React Native core)",
+        "path": "lib/arm64-v8a/libreactnative.so",
+        "stored": true,
+        "zipAligned": true,
+      },
+      {
+        "abi": "x86_64",
+        "elfOk": true,
+        "is64Bit": true,
+        "loadAlign": 16384,
+        "name": "libreactnative.so",
+        "package": "react-native",
+        "packageSource": "known table (React Native core)",
+        "path": "lib/x86_64/libreactnative.so",
+        "stored": true,
+        "zipAligned": true,
+      },
+    ],
+    "manifest": {
+      "available": true,
+      "manifest": {
+        "components": [
+          {
+            "exported": true,
+            "hasIntentFilter": true,
+            "name": "com.demo.scanner.MainActivity",
+            "type": "activity",
+          },
+        ],
+        "minSdk": 24,
+        "networkSecurityConfig": false,
+        "package": "com.demo.scanner",
+        "permissions": [
+          "android.permission.INTERNET",
+        ],
+        "targetSdk": 36,
+        "versionCode": 1,
+        "versionName": "1.0",
+      },
+    },
+    "signing": {
+      "certificates": [
+        {
+          "debug": false,
+          "schemes": [
+            "v2",
+            "v3",
+          ],
+          "sha256": "99:9E:F3:30:F3:F9:06:9E:C1:26:A5:1E:B5:31:67:28:3E:4D:23:51:A8:07:C1:A8:B8:EF:30:07:0C:68:17:4A",
+          "subject": "CN=Demo Release, O=Demo, C=US",
+          "validFrom": "2026-01-01T05:31:16.000Z",
+          "validTo": "2060-12-23T05:31:16.000Z",
+        },
+      ],
+      "debugSigned": false,
+      "schemes": [
+        "v2",
+        "v3",
+      ],
+      "unsigned": false,
+    },
+  },
+  "dependencies": [],
+  "findings": [
+    {
+      "id": "apk-16kb-ok",
+      "severity": "info",
+      "source": "APK scan (APK)",
+      "title": "The only 64-bit native library is 16 KB page-size compatible",
+    },
+    {
+      "docs": "https://developer.android.com/guide/app-bundle",
+      "fix": "Upload the AAB of the same build (./gradlew bundleRelease).",
+      "id": "play-aab-required",
+      "severity": "info",
+      "source": "APK scan (APK)",
+      "title": "Google Play needs an Android App Bundle (AAB) for new apps; this APK check is a pre-upload check",
+    },
+  ],
+  "meta": {
+    "apk": "<tmp>/ready.apk",
+    "cwd": "<repo>/examples/15-play-store",
+    "mode": "apk-only",
+    "offline": true,
+    "scannedAt": "<time>",
+    "tool": "rn-upgrade-doctor",
+    "version": "<version>",
+  },
+  "native": {
+    "currentSource": "not looked up",
+    "rows": [],
+    "targetSource": "not looked up",
+  },
+  "patches": [],
+  "playStore": {
+    "app": {
+      "minSdk": 24,
+      "package": "com.demo.scanner",
+      "targetSdk": 36,
+      "versionCode": 1,
+      "versionName": "1.0",
+    },
+    "blockers": 0,
+    "findingIds": [
+      "play-aab-required",
+    ],
+    "ready": true,
+    "signing": {
+      "certificates": [
+        {
+          "sha256": "99:9E:F3:30:F3:F9:06:9E:C1:26:A5:1E:B5:31:67:28:3E:4D:23:51:A8:07:C1:A8:B8:EF:30:07:0C:68:17:4A",
+          "subject": "CN=Demo Release, O=Demo, C=US",
+          "validTo": "2060-12-23T05:31:16.000Z",
+        },
+      ],
+      "schemes": [
+        "v2",
+        "v3",
+      ],
+    },
+    "warnings": 0,
+  },
+  "summary": {
+    "blockers": 0,
+    "info": 2,
+    "warnings": 0,
+  },
+}
+`;
+
+exports[`examples > 15 Play Store (targetSdk 34) 1`] = `
+{
+  "apk": {
+    "file": "<tmp>/target-sdk-34.apk",
+    "kind": "apk",
+    "libs": [
+      {
+        "abi": "arm64-v8a",
+        "elfOk": true,
+        "is64Bit": true,
+        "loadAlign": 16384,
+        "name": "libreactnative.so",
+        "package": "react-native",
+        "packageSource": "known table (React Native core)",
+        "path": "lib/arm64-v8a/libreactnative.so",
+        "stored": true,
+        "zipAligned": true,
+      },
+      {
+        "abi": "x86_64",
+        "elfOk": true,
+        "is64Bit": true,
+        "loadAlign": 16384,
+        "name": "libreactnative.so",
+        "package": "react-native",
+        "packageSource": "known table (React Native core)",
+        "path": "lib/x86_64/libreactnative.so",
+        "stored": true,
+        "zipAligned": true,
+      },
+    ],
+    "manifest": {
+      "available": true,
+      "manifest": {
+        "components": [
+          {
+            "exported": true,
+            "hasIntentFilter": true,
+            "name": "com.demo.scanner.MainActivity",
+            "type": "activity",
+          },
+        ],
+        "minSdk": 24,
+        "networkSecurityConfig": false,
+        "package": "com.demo.scanner",
+        "permissions": [
+          "android.permission.INTERNET",
+        ],
+        "targetSdk": 34,
+        "versionCode": 1,
+        "versionName": "1.0",
+      },
+    },
+    "signing": {
+      "certificates": [
+        {
+          "debug": false,
+          "schemes": [
+            "v2",
+            "v3",
+          ],
+          "sha256": "99:9E:F3:30:F3:F9:06:9E:C1:26:A5:1E:B5:31:67:28:3E:4D:23:51:A8:07:C1:A8:B8:EF:30:07:0C:68:17:4A",
+          "subject": "CN=Demo Release, O=Demo, C=US",
+          "validFrom": "2026-01-01T05:31:16.000Z",
+          "validTo": "2060-12-23T05:31:16.000Z",
+        },
+      ],
+      "debugSigned": false,
+      "schemes": [
+        "v2",
+        "v3",
+      ],
+      "unsigned": false,
+    },
+  },
+  "dependencies": [],
+  "findings": [
+    {
+      "id": "apk-16kb-ok",
+      "severity": "info",
+      "source": "APK scan (APK)",
+      "title": "The only 64-bit native library is 16 KB page-size compatible",
+    },
+    {
+      "docs": "https://developer.android.com/guide/app-bundle",
+      "fix": "Upload the AAB of the same build (./gradlew bundleRelease).",
+      "id": "play-aab-required",
+      "severity": "info",
+      "source": "APK scan (APK)",
+      "title": "Google Play needs an Android App Bundle (AAB) for new apps; this APK check is a pre-upload check",
+    },
+    {
+      "detail": "Since 31 Aug 2026, Google Play requires new apps and app updates to target API 36 (Android 16) or higher (an extension to 1 Nov 2026 can be requested). Existing apps below API 35 are hidden from new users on newer Android versions.",
+      "docs": "https://developer.android.com/google/play/requirements/target-sdk",
+      "fix": "Set targetSdkVersion to 36 or higher and test the behaviour changes of each Android version in between.",
+      "id": "play-target-sdk",
+      "severity": "blocker",
+      "source": "APK manifest (APK)",
+      "title": "targetSdkVersion 34 is below 36, the minimum for new apps and updates on Google Play",
+    },
+  ],
+  "meta": {
+    "apk": "<tmp>/target-sdk-34.apk",
+    "cwd": "<repo>/examples/15-play-store",
+    "mode": "apk-only",
+    "offline": true,
+    "scannedAt": "<time>",
+    "tool": "rn-upgrade-doctor",
+    "version": "<version>",
+  },
+  "native": {
+    "currentSource": "not looked up",
+    "rows": [],
+    "targetSource": "not looked up",
+  },
+  "patches": [],
+  "playStore": {
+    "app": {
+      "minSdk": 24,
+      "package": "com.demo.scanner",
+      "targetSdk": 34,
+      "versionCode": 1,
+      "versionName": "1.0",
+    },
+    "blockers": 1,
+    "findingIds": [
+      "play-target-sdk",
+      "play-aab-required",
+    ],
+    "ready": false,
+    "signing": {
+      "certificates": [
+        {
+          "sha256": "99:9E:F3:30:F3:F9:06:9E:C1:26:A5:1E:B5:31:67:28:3E:4D:23:51:A8:07:C1:A8:B8:EF:30:07:0C:68:17:4A",
+          "subject": "CN=Demo Release, O=Demo, C=US",
+          "validTo": "2060-12-23T05:31:16.000Z",
+        },
+      ],
+      "schemes": [
+        "v2",
+        "v3",
+      ],
+    },
+    "warnings": 0,
+  },
+  "summary": {
+    "blockers": 1,
+    "info": 2,
+    "warnings": 0,
+  },
+}
+`;
+
+exports[`examples > 15 Play Store (unsigned) 1`] = `
+{
+  "apk": {
+    "file": "<tmp>/unsigned.apk",
+    "kind": "apk",
+    "libs": [
+      {
+        "abi": "arm64-v8a",
+        "elfOk": true,
+        "is64Bit": true,
+        "loadAlign": 16384,
+        "name": "libreactnative.so",
+        "package": "react-native",
+        "packageSource": "known table (React Native core)",
+        "path": "lib/arm64-v8a/libreactnative.so",
+        "stored": true,
+        "zipAligned": true,
+      },
+      {
+        "abi": "x86_64",
+        "elfOk": true,
+        "is64Bit": true,
+        "loadAlign": 16384,
+        "name": "libreactnative.so",
+        "package": "react-native",
+        "packageSource": "known table (React Native core)",
+        "path": "lib/x86_64/libreactnative.so",
+        "stored": true,
+        "zipAligned": true,
+      },
+    ],
+    "manifest": {
+      "available": true,
+      "manifest": {
+        "components": [
+          {
+            "exported": true,
+            "hasIntentFilter": true,
+            "name": "com.demo.scanner.MainActivity",
+            "type": "activity",
+          },
+        ],
+        "minSdk": 24,
+        "networkSecurityConfig": false,
+        "package": "com.demo.scanner",
+        "permissions": [
+          "android.permission.INTERNET",
+        ],
+        "targetSdk": 36,
+        "versionCode": 1,
+        "versionName": "1.0",
+      },
+    },
+    "signing": {
+      "certificates": [],
+      "debugSigned": false,
+      "schemes": [],
+      "unsigned": true,
+    },
+  },
+  "dependencies": [],
+  "findings": [
+    {
+      "id": "apk-16kb-ok",
+      "severity": "info",
+      "source": "APK scan (APK)",
+      "title": "The only 64-bit native library is 16 KB page-size compatible",
+    },
+    {
+      "docs": "https://developer.android.com/guide/app-bundle",
+      "fix": "Upload the AAB of the same build (./gradlew bundleRelease).",
+      "id": "play-aab-required",
+      "severity": "info",
+      "source": "APK scan (APK)",
+      "title": "Google Play needs an Android App Bundle (AAB) for new apps; this APK check is a pre-upload check",
+    },
+    {
+      "detail": "Google Play only accepts uploads signed with your upload key.",
+      "docs": "https://developer.android.com/studio/publish/app-signing",
+      "fix": "Configure a release signingConfig in android/app/build.gradle with your upload keystore, then build again.",
+      "id": "play-unsigned",
+      "severity": "blocker",
+      "source": "APK signature (APK)",
+      "title": "The APK is not signed",
+    },
+  ],
+  "meta": {
+    "apk": "<tmp>/unsigned.apk",
+    "cwd": "<repo>/examples/15-play-store",
+    "mode": "apk-only",
+    "offline": true,
+    "scannedAt": "<time>",
+    "tool": "rn-upgrade-doctor",
+    "version": "<version>",
+  },
+  "native": {
+    "currentSource": "not looked up",
+    "rows": [],
+    "targetSource": "not looked up",
+  },
+  "patches": [],
+  "playStore": {
+    "app": {
+      "minSdk": 24,
+      "package": "com.demo.scanner",
+      "targetSdk": 36,
+      "versionCode": 1,
+      "versionName": "1.0",
+    },
+    "blockers": 1,
+    "findingIds": [
+      "play-unsigned",
+      "play-aab-required",
+    ],
+    "ready": false,
+    "warnings": 0,
+  },
+  "summary": {
+    "blockers": 1,
+    "info": 2,
+    "warnings": 0,
+  },
+}
+`;
+
+exports[`examples > 15 Play Store (v1-only signing) 1`] = `
+{
+  "apk": {
+    "file": "<tmp>/v1-only.apk",
+    "kind": "apk",
+    "libs": [
+      {
+        "abi": "arm64-v8a",
+        "elfOk": true,
+        "is64Bit": true,
+        "loadAlign": 16384,
+        "name": "libreactnative.so",
+        "package": "react-native",
+        "packageSource": "known table (React Native core)",
+        "path": "lib/arm64-v8a/libreactnative.so",
+        "stored": true,
+        "zipAligned": true,
+      },
+      {
+        "abi": "x86_64",
+        "elfOk": true,
+        "is64Bit": true,
+        "loadAlign": 16384,
+        "name": "libreactnative.so",
+        "package": "react-native",
+        "packageSource": "known table (React Native core)",
+        "path": "lib/x86_64/libreactnative.so",
+        "stored": true,
+        "zipAligned": true,
+      },
+    ],
+    "manifest": {
+      "available": true,
+      "manifest": {
+        "components": [
+          {
+            "exported": true,
+            "hasIntentFilter": true,
+            "name": "com.demo.scanner.MainActivity",
+            "type": "activity",
+          },
+        ],
+        "minSdk": 24,
+        "networkSecurityConfig": false,
+        "package": "com.demo.scanner",
+        "permissions": [
+          "android.permission.INTERNET",
+        ],
+        "targetSdk": 36,
+        "versionCode": 1,
+        "versionName": "1.0",
+      },
+    },
+    "signing": {
+      "certificates": [
+        {
+          "debug": false,
+          "schemes": [
+            "v1",
+          ],
+          "sha256": "99:9E:F3:30:F3:F9:06:9E:C1:26:A5:1E:B5:31:67:28:3E:4D:23:51:A8:07:C1:A8:B8:EF:30:07:0C:68:17:4A",
+          "subject": "CN=Demo Release, O=Demo, C=US",
+          "validFrom": "2026-01-01T05:31:16.000Z",
+          "validTo": "2060-12-23T05:31:16.000Z",
+        },
+      ],
+      "debugSigned": false,
+      "schemes": [
+        "v1",
+      ],
+      "unsigned": false,
+    },
+  },
+  "dependencies": [],
+  "findings": [
+    {
+      "id": "apk-16kb-ok",
+      "severity": "info",
+      "source": "APK scan (APK)",
+      "title": "The only 64-bit native library is 16 KB page-size compatible",
+    },
+    {
+      "docs": "https://developer.android.com/guide/app-bundle",
+      "fix": "Upload the AAB of the same build (./gradlew bundleRelease).",
+      "id": "play-aab-required",
+      "severity": "info",
+      "source": "APK scan (APK)",
+      "title": "Google Play needs an Android App Bundle (AAB) for new apps; this APK check is a pre-upload check",
+    },
+    {
+      "detail": "Apps targeting Android 11+ that are signed only with v1 cannot be installed or updated on Android 11 and newer.",
+      "docs": "https://developer.android.com/about/versions/11/behavior-changes-11",
+      "fix": "Sign with v2 or newer as well (apksigner and the Android Gradle Plugin do this by default).",
+      "id": "play-v1-only",
+      "severity": "blocker",
+      "source": "APK signature (APK)",
+      "title": "Signed only with APK Signature Scheme v1, but targetSdkVersion is 36",
+    },
+  ],
+  "meta": {
+    "apk": "<tmp>/v1-only.apk",
+    "cwd": "<repo>/examples/15-play-store",
+    "mode": "apk-only",
+    "offline": true,
+    "scannedAt": "<time>",
+    "tool": "rn-upgrade-doctor",
+    "version": "<version>",
+  },
+  "native": {
+    "currentSource": "not looked up",
+    "rows": [],
+    "targetSource": "not looked up",
+  },
+  "patches": [],
+  "playStore": {
+    "app": {
+      "minSdk": 24,
+      "package": "com.demo.scanner",
+      "targetSdk": 36,
+      "versionCode": 1,
+      "versionName": "1.0",
+    },
+    "blockers": 1,
+    "findingIds": [
+      "play-v1-only",
+      "play-aab-required",
+    ],
+    "ready": false,
+    "signing": {
+      "certificates": [
+        {
+          "sha256": "99:9E:F3:30:F3:F9:06:9E:C1:26:A5:1E:B5:31:67:28:3E:4D:23:51:A8:07:C1:A8:B8:EF:30:07:0C:68:17:4A",
+          "subject": "CN=Demo Release, O=Demo, C=US",
+          "validTo": "2060-12-23T05:31:16.000Z",
+        },
+      ],
+      "schemes": [
+        "v1",
+      ],
+    },
+    "warnings": 0,
+  },
+  "summary": {
+    "blockers": 1,
+    "info": 2,
     "warnings": 0,
   },
 }

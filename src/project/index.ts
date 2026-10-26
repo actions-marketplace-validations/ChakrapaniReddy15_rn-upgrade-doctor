@@ -21,6 +21,7 @@ export async function buildProjectContext(cwd: string): Promise<ProjectContext> 
   if (!reactNative) {
     throw new ProjectError(
       `${root} does not look like a React Native app: "react-native" is not in dependencies or devDependencies.`,
+      'not-react-native',
     );
   }
 

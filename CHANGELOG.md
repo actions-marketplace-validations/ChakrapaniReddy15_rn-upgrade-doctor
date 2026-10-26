@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.2.0 — 2026-10-26
+
+Check a built APK or AAB for Google Play, with or without the source code.
+
+- **APK-only mode:** `rn-upgrade-doctor --apk app-release.apk` in a folder without a React Native project checks just
+  the built app (no network access). The report header says "APK-only scan (no project found)".
+- **AndroidManifest.xml from the APK** (compiled binary XML): package, version, min/target SDK, debuggable, cleartext,
+  network security config, permissions, and components with their intent filters and `android:exported`.
+  Verified against `aapt2`. AABs store a protobuf manifest, so manifest checks need the APK.
+- **Signing:** v1, v2, v3 and v3.1 schemes, the Android debug key, and every signer certificate (subject, SHA-256 as
+  Play Console shows it, validity), read with Node's built-in X.509 parser. Verified against `apksigner`.
+- **Google Play rules** (one data file, `src/rules/playStore.ts`), each with a fix and a docs link:
+  blockers for target API below 36, no 64-bit ABI, debuggable, unsigned, debug key, v1-only signing on Android 11+
+  targets, expired certificate or validity before 22 Oct 2033, and missing `android:exported` on Android 12+ targets;
+  warnings for permissions that need a Play Console declaration and for cleartext traffic. 16 KB results count too.
+- **"Play Store ready?"** section in the terminal, HTML, Markdown and JSON reports: ✅ ready, or ❌ blockers and ⚠️
+  warnings with the fix list, plus the app's package, version, SDK levels, signer and SHA-256. Exit code 1 on any
+  Play blocker. Findings show their docs links.
+- **Examples:** `examples/15-play-store` has one generated APK per Play rule, plus an AAB; the GitHub Action is also
+  tested on an APK without a project.
+- **Fixes:** the 16 KB "all compatible" line counts libraries, not their per-ABI copies.
+
 ## 0.1.0 — 2026-10-13
 
 First release.

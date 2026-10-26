@@ -107,3 +107,42 @@ async function readElfPrefix(zip: yauzl.ZipFile, entry: yauzl.Entry): Promise<Bu
   const buf = Buffer.concat(chunks);
   return buf.length >= needed ? buf : undefined;
 }
+
+/** Largest entry readZipEntry will load into memory (manifests are a few KB; this only guards against bad input). */
+const MAX_ENTRY_BYTES = 16 * 1024 * 1024;
+
+/** The full contents of one zip entry, or undefined when the zip has no entry with that name. */
+export async function readZipEntry(file: string, name: string): Promise<Buffer | undefined> {
+  const zip = await new Promise<yauzl.ZipFile>((resolve, reject) =>
+    yauzl.open(file, { lazyEntries: true, autoClose: false }, (err, z) => (err ? reject(err) : resolve(z))),
+  );
+  try {
+    for await (const entry of entries(zip)) {
+      if (entry.fileName !== name) continue;
+      if (entry.uncompressedSize > MAX_ENTRY_BYTES) throw new Error(`${name} is larger than ${MAX_ENTRY_BYTES} bytes`);
+      const stream = await new Promise<Readable>((resolve, reject) =>
+        zip.openReadStream(entry, (err, s) => (err ? reject(err) : resolve(s))),
+      );
+      const chunks: Buffer[] = [];
+      for await (const chunk of stream) chunks.push(chunk as Buffer);
+      return Buffer.concat(chunks);
+    }
+    return undefined;
+  } finally {
+    zip.close();
+  }
+}
+
+/** Names of all entries in the zip. */
+export async function listZipEntries(file: string): Promise<string[]> {
+  const zip = await new Promise<yauzl.ZipFile>((resolve, reject) =>
+    yauzl.open(file, { lazyEntries: true, autoClose: false }, (err, z) => (err ? reject(err) : resolve(z))),
+  );
+  try {
+    const names: string[] = [];
+    for await (const entry of entries(zip)) names.push(entry.fileName);
+    return names;
+  } finally {
+    zip.close();
+  }
+}

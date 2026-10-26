@@ -24,7 +24,10 @@ export function interestingDependencies(report: Report): DependencyInfo[] {
   return report.dependencies.filter((d) => d.directory.value || flagged.has(d.name) || d.name === 'react-native');
 }
 
+export const APK_ONLY_HEADLINE = 'APK-only scan (no project found)';
+
 export function headline(report: Report): string {
+  if (report.meta.mode === 'apk-only') return APK_ONLY_HEADLINE;
   const { reactNativeVersion, latestReactNative } = report.meta;
   if (!reactNativeVersion) return 'React Native version unknown';
   if (!latestReactNative) return `React Native ${reactNativeVersion} (latest unknown${report.meta.offline ? ', offline' : ''})`;
@@ -33,6 +36,9 @@ export function headline(report: Report): string {
 }
 
 export function dataSources(report: Report): string[] {
+  if (report.meta.mode === 'apk-only') {
+    return [`APK: ${report.meta.apk}`, `Project: none found in ${report.meta.cwd}, so dependency, Android, iOS and patch checks did not run`];
+  }
   const sources = new Set<string>();
   const lockfile = report.meta.lockfile ? ` (${report.meta.lockfile})` : '';
   sources.add(`React Native version: ${report.meta.reactNativeVersionSource}${report.meta.reactNativeVersionSource === 'lockfile' ? lockfile : ''}`);
@@ -129,4 +135,10 @@ export const SIXTEEN_KB_NOT_CHECKED =
 
 export function sixteenKbNotChecked(report: Report): boolean {
   return !report.apk && report.android !== undefined;
+}
+
+/** The second header line: the project folder (and package manager), or the APK in APK-only mode. */
+export function subtitle(report: Report): string {
+  if (report.meta.mode === 'apk-only') return report.meta.apk ?? '';
+  return `${report.meta.cwd}${report.meta.packageManager ? ` · ${report.meta.packageManager}` : ''}`;
 }

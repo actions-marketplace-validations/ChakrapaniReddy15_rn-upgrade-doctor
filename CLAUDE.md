@@ -38,8 +38,9 @@ src/project/          read package.json, lockfiles (npm/yarn/pnpm), detect RN ve
 src/registry/         npm registry, React Native Directory, React Native template clients + cache
 src/android/          Gradle / gradle.properties parsing
 src/ios/              Podfile / Podfile.lock parsing
-src/apk/              unzip APK/AAB, ELF header parser, 16 KB alignment check, .so -> package mapping
-src/rules/            known libraries table, version rules, advice text, semver helpers
+src/apk/              unzip APK/AAB, ELF header parser, 16 KB alignment check, .so -> package mapping,
+                      binary manifest (AXML) parser, signing schemes and certificates
+src/rules/            known libraries table, version rules, Google Play rules (playStore.ts), semver helpers
 src/checks/           pure checks (ProjectContext -> Finding[]), native vs template comparison, ranking
 src/report/           terminal, HTML, Markdown, JSON renderers
 action.yml            composite GitHub Action (example workflow in docs/examples/)
@@ -54,7 +55,9 @@ docs/                 PLAN.md (design), TASKS.md (roadmap), COMMANDS.md (every c
   · `npm run examples`. Full list with explanations: `docs/COMMANDS.md`.
 
 ## Status
-- Feature code done: project/lockfiles (incl. monorepos), registry + cache, Android/iOS/patches, 16 KB APK/AAB scan,
-  checks, renderers, GitHub Action. Not yet checked against real buildable apps or real release APKs.
+- v0.1 (published): project/lockfiles (incl. monorepos), registry + cache, Android/iOS/patches, native settings vs the
+  React Native template, 16 KB APK/AAB scan, renderers, GitHub Action. Checked against a real template app and APK.
+- v0.2: APK-only mode (`--apk` without a project), manifest and signing readers, Google Play rules and the
+  "Play Store ready?" section. Manifest output verified against aapt2, signing against apksigner.
 - Examples in examples/ cover every finding id (test/examples.test.ts guards this).
 - Open items: `docs/TASKS.md`.

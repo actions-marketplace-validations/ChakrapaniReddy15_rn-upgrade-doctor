@@ -3,6 +3,7 @@ import pc from 'picocolors';
 import { PLAY_POLICY } from '../rules/index.js';
 import type { Report, Severity } from '../types.js';
 import { ELF_FIX, googleCheck, plural, problemText, scopeText, summarizeApk, verdictText } from './apkSummary.js';
+import { PLAY_CONSOLE_HINT, playStoreSection } from './playStoreSection.js';
 import {
   NATIVE_STATUS_LABEL,
   SIXTEEN_KB_NOT_CHECKED,
@@ -14,6 +15,7 @@ import {
   nativeSections,
   newArchLabel,
   sixteenKbNotChecked,
+  subtitle,
   templateColumns,
 } from './shared.js';
 
@@ -23,7 +25,7 @@ export function renderTerminal(report: Report, options: { color: boolean }): str
   const out: string[] = [];
 
   out.push('', c.bold(`rn-upgrade-doctor · ${headline(report)}`));
-  out.push(c.dim(`${report.meta.cwd}${report.meta.packageManager ? ` · ${report.meta.packageManager}` : ''}`));
+  out.push(c.dim(subtitle(report)));
   if (report.meta.upgradeHelperUrl) out.push(`Upgrade diff: ${c.cyan(report.meta.upgradeHelperUrl)}`);
 
   const { blockers, warnings, info } = report.summary;
@@ -41,6 +43,7 @@ export function renderTerminal(report: Report, options: { color: boolean }): str
         out.push(`${n} ${icon[f.severity]} ${f.title}`);
         if (f.detail) out.push(c.dim(`       ${oneLine(f.detail)}`));
         if (f.fix) out.push(`       ${c.green('→')} ${f.fix}`);
+        if (f.docs) out.push(c.dim(`       docs: ${f.docs}`));
         out.push(c.dim(`       source: ${f.source}`));
         return;
       }
@@ -49,6 +52,7 @@ export function renderTerminal(report: Report, options: { color: boolean }): str
         out.push(`       ${icon[f.severity]} ${f.title}`);
         if (f.detail) out.push(c.dim(`         ${oneLine(f.detail)}`));
         if (f.fix) out.push(`         ${c.green('→')} ${f.fix}`);
+        if (f.docs) out.push(c.dim(`         docs: ${f.docs}`));
         out.push(c.dim(`         source: ${f.source}`));
       }
     });
@@ -74,8 +78,8 @@ export function renderTerminal(report: Report, options: { color: boolean }): str
   }
 
   const columns = templateColumns(report);
-  out.push('', c.bold('Native config vs React Native template'));
-  for (const section of nativeSections(report)) {
+  if (report.meta.mode !== 'apk-only') out.push('', c.bold('Native config vs React Native template'));
+  for (const section of report.meta.mode === 'apk-only' ? [] : nativeSections(report)) {
     if (section.rows.length === 0) {
       out.push(`  ${section.platform}: ${c.dim(`no ${section.platform === 'Android' ? 'android/' : 'ios/Podfile'} found`)}`);
       continue;
@@ -119,6 +123,21 @@ export function renderTerminal(report: Report, options: { color: boolean }): str
     if (check) out.push('', c.dim(`  Check with Google's tool (Android SDK build-tools): ${check}`));
   } else if (sixteenKbNotChecked(report)) {
     out.push('', c.bold('16 KB page size'), c.yellow(SIXTEEN_KB_NOT_CHECKED));
+  }
+
+  const play = playStoreSection(report);
+  if (play) {
+    out.push('', `${c.bold('Play Store ready?')}  ${play.verdict.ready ? c.green(play.heading) : c.red(play.heading)}`);
+    if (play.app) out.push(c.dim(`  ${play.app}`));
+    for (const line of play.signedWith) out.push(c.dim(`  signed: ${line}`));
+    for (const sha of play.fingerprints) out.push(c.dim(`  SHA-256 ${sha} (${PLAY_CONSOLE_HINT})`));
+    if (play.issues.length > 0) out.push('');
+    for (const f of play.issues) {
+      out.push(`  ${icon[f.severity]} ${f.title}`);
+      if (f.fix) out.push(`      ${c.green('→')} ${f.fix}`);
+      if (f.docs) out.push(c.dim(`        ${f.docs}`));
+    }
+    for (const f of play.notes) out.push(c.dim(`  ${icon.info} ${f.title}`));
   }
 
   out.push('', c.dim('Data sources:'), ...dataSources(report).map((s) => c.dim(`  ${s}`)), '');

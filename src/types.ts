@@ -9,6 +9,8 @@ export interface Finding {
   fix?: string;
   /** Where the data came from, e.g. "npm registry", "React Native Directory", "APK scan". */
   source: string;
+  /** Official documentation for the rule. */
+  docs?: string;
 }
 
 export type ReportFormat = 'terminal' | 'html' | 'md' | 'json';
@@ -145,17 +147,93 @@ export interface NativeLib {
   packageSource?: string;
 }
 
+/** An app component declared in the manifest. */
+export interface ManifestComponent {
+  type: 'activity' | 'activity-alias' | 'service' | 'receiver' | 'provider';
+  /** Fully qualified class name. */
+  name: string;
+  /** android:exported; undefined when the attribute is missing. */
+  exported?: boolean;
+  hasIntentFilter: boolean;
+}
+
+/** The parts of AndroidManifest.xml the Play Store checks need. Undefined = attribute not set. */
+export interface ApkManifest {
+  package?: string;
+  versionCode?: number;
+  versionName?: string;
+  minSdk?: number;
+  targetSdk?: number;
+  debuggable?: boolean;
+  usesCleartextTraffic?: boolean;
+  /** android:networkSecurityConfig is set on <application>. */
+  networkSecurityConfig: boolean;
+  /** uses-permission and uses-permission-sdk-23 names. */
+  permissions: string[];
+  components: ManifestComponent[];
+}
+
+export type SigningScheme = 'v1' | 'v2' | 'v3' | 'v3.1';
+
+/** A signer certificate, for comparing with the upload key shown in Play Console (Setup > App signing). */
+export interface SigningCertificate {
+  /** e.g. "CN=Demo Release, O=Demo, C=US" */
+  subject: string;
+  /** SHA-256 fingerprint as Play Console shows it: "AB:CD:...". */
+  sha256: string;
+  /** ISO dates. */
+  validFrom: string;
+  validTo: string;
+  /** Subject common name is "Android Debug". */
+  debug: boolean;
+  /** Schemes this certificate signs with. */
+  schemes: SigningScheme[];
+}
+
+/** How the APK is signed. AABs only have v1 (JAR) signatures. */
+export interface ApkSigning {
+  /** Signature schemes found, in the order v1, v2, v3, v3.1. */
+  schemes: SigningScheme[];
+  /** A certificate's subject is "CN=Android Debug": the key Android tooling creates for local builds. */
+  debugSigned: boolean;
+  unsigned: boolean;
+  /** Signer certificates, one entry per distinct certificate. */
+  certificates: SigningCertificate[];
+}
+
+export type ManifestResult = { available: true; manifest: ApkManifest } | { available: false; reason: string };
+
 export interface ApkReport {
   file: string;
   kind: 'apk' | 'aab';
   libs: NativeLib[];
+  /** The parsed AndroidManifest.xml (APK only), or why it could not be read. */
+  manifest?: ManifestResult;
+  /** Signature schemes and debug-key detection; undefined if the file could not be read for it. */
+  signing?: ApkSigning;
+}
+
+/** The "Play Store ready?" verdict for a scanned APK/AAB. */
+export interface PlayStoreVerdict {
+  /** No Play blockers (warnings still need review). */
+  ready: boolean;
+  blockers: number;
+  warnings: number;
+  /** Findings the verdict is based on: play-* rules and the 16 KB (apk-16kb:*) blockers, ranked. */
+  findingIds: string[];
+  /** From the manifest, when it could be read. */
+  app?: { package?: string; versionName?: string; versionCode?: number; minSdk?: number; targetSdk?: number };
+  /** Signing summary, to compare with the upload key in Play Console (Setup > App signing). */
+  signing?: { schemes: SigningScheme[]; certificates: Array<Pick<SigningCertificate, 'subject' | 'sha256' | 'validTo'>> };
 }
 
 export interface ProjectContext {
   cwd: string;
+  /** 'apk-only' when --apk was given and the folder has no React Native project: only the APK is checked. */
+  mode?: 'project' | 'apk-only';
   /** Exact version from the lockfile, else the lowest version allowed by the package.json range. */
   reactNativeVersion?: string;
-  reactNativeVersionSource: 'lockfile' | 'package.json';
+  reactNativeVersionSource?: 'lockfile' | 'package.json';
   /** The react-native range as written in package.json. */
   reactNativeRange?: string;
   packageManager?: 'npm' | 'yarn' | 'pnpm';
@@ -177,6 +255,8 @@ export interface ProjectContext {
   patches?: PatchInfo[];
   apk?: ApkReport;
   templates?: NativeTemplates;
+  /** Time of the scan (ISO), for date rules such as certificate expiry. Defaults to now. */
+  now?: string;
 }
 
 export interface Report {
@@ -186,8 +266,10 @@ export interface Report {
     scannedAt: string;
     cwd: string;
     apk?: string;
+    /** 'apk-only' when --apk was given outside a React Native project. */
+    mode: 'project' | 'apk-only';
     reactNativeVersion?: string;
-    reactNativeVersionSource: ProjectContext['reactNativeVersionSource'];
+    reactNativeVersionSource?: ProjectContext['reactNativeVersionSource'];
     latestReactNative?: string;
     latestReactNativeSource?: string;
     upgradeHelperUrl?: string;
@@ -205,4 +287,6 @@ export interface Report {
   native: NativeComparison;
   patches: PatchInfo[];
   apk?: ApkReport;
+  /** Present when an APK/AAB was scanned. */
+  playStore?: PlayStoreVerdict;
 }

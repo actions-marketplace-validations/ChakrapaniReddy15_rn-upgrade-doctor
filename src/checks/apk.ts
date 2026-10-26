@@ -9,15 +9,18 @@ export function checkApk(ctx: ProjectContext): Finding[] {
 
   const failing = apk.libs.filter((lib) => !lib.elfOk || lib.zipAligned === false);
   if (failing.length === 0) {
-    const checked = apk.libs.filter((lib) => lib.is64Bit).length;
+    // Count libraries, not their per-ABI copies, like the 16 KB summary in the report does.
+    const checked = new Set(apk.libs.filter((lib) => lib.is64Bit).map((lib) => lib.name)).size;
     return [
       {
         id: 'apk-16kb-ok',
         severity: 'info',
         title:
-          checked > 0
-            ? `All ${checked} 64-bit native libraries are 16 KB page-size compatible`
-            : 'No 64-bit native libraries found in the build',
+          checked === 0
+            ? 'No 64-bit native libraries found in the build'
+            : checked === 1
+              ? 'The only 64-bit native library is 16 KB page-size compatible'
+              : `All ${checked} 64-bit native libraries are 16 KB page-size compatible`,
         source,
       },
     ];

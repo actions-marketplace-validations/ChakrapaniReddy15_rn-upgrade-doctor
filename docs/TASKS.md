@@ -33,11 +33,22 @@
 
 ## Release
 - [x] Play policy checked 2026-10-13: target API 36 since 31 Aug 2026; 16 KB required for updates from 1 Feb 2027
-- [ ] README with a demo GIF
+- [x] README with a demo GIF
 - [x] Release prep: version 0.1.0, CHANGELOG, README
-- [ ] Publish v0.1 to npm; tag `v0.1.0`
+- [x] Publish v0.1 to npm; tag `v0.1.0`
+
+## v0.2: Play Store check of an APK
+- [x] APK-only mode: `--apk` outside a React Native project
+- [x] Binary AndroidManifest.xml parser (verified against aapt2)
+- [x] Signing schemes, debug key and signer certificates (verified against apksigner)
+- [x] Google Play rules with fixes and docs links (`src/rules/playStore.ts`)
+- [x] "Play Store ready?" section in every report format; exit code 1 on Play blockers
+- [x] Example APKs for every rule (`examples/15-play-store`), CLI and GitHub Action tests
+- [ ] Publish v0.2.0 to npm; tag `v0.2.0` and create the GitHub release
 
 ## Later
+- [ ] Cryptographic signature verification (v2/v3 digests), to catch APKs changed after signing
+- [ ] Manifest checks for AABs (protobuf manifest)
 - [x] Ranking within a severity (dev-only packages last; their deprecation, replacement and version findings as info)
 - [x] One entry per package in the reports (JSON keeps one finding per problem)
 - [x] More known replacements in `src/rules/libraries.ts`

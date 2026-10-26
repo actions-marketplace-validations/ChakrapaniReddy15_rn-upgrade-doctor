@@ -2,12 +2,24 @@ import { access } from 'node:fs/promises';
 import path from 'node:path';
 import type { ApkReport, NativeLib } from '../types.js';
 import { PAGE_16K, parseElf } from './elf.js';
+import { readManifest } from './manifest.js';
+import { readSigning } from './signing.js';
 import { buildSoIndex, findSoOwner } from './mapping.js';
 import { readNativeLibs } from './zip.js';
 
 export { PAGE_16K, parseElf, programHeadersEnd } from './elf.js';
 export { buildSoIndex, cmakeSharedLibraries, findSoOwner } from './mapping.js';
-export { readNativeLibs } from './zip.js';
+export { listZipEntries, readNativeLibs, readZipEntry } from './zip.js';
+export {
+  certificatesFromPkcs7,
+  certificatesFromSignerBlock,
+  containsDebugCn,
+  describeCertificate,
+  readSigning,
+  readSigningBlock,
+} from './signing.js';
+export { attribute, isAxml, parseAxml, type AxmlElement } from './axml.js';
+export { extractManifest, readManifest } from './manifest.js';
 
 /**
  * 16 KB page-size scan of a built APK or AAB, with each native library mapped to the npm package behind it.
@@ -22,7 +34,11 @@ export async function scanApk(file: string, projectDirs: string | string[]): Pro
     throw new Error(`APK/AAB not found: ${resolved}`);
   }
   const kind = resolved.toLowerCase().endsWith('.aab') ? 'aab' : 'apk';
-  const entries = await readNativeLibs(resolved, kind);
+  const [entries, manifest, signing] = await Promise.all([
+    readNativeLibs(resolved, kind),
+    readManifest(resolved, kind),
+    readSigning(resolved).catch(() => undefined),
+  ]);
   const index = await buildSoIndex(projectDirs);
 
   const libs = entries.map((entry): NativeLib => {
@@ -53,5 +69,5 @@ export async function scanApk(file: string, projectDirs: string | string[]): Pro
       packageSource: owner?.source,
     };
   });
-  return { file: resolved, kind, libs };
+  return { file: resolved, kind, libs, manifest, signing };
 }

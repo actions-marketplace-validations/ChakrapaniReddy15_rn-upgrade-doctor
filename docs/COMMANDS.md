@@ -75,6 +75,14 @@ Use apps you are allowed to scan; don't commit their names or reports to this re
 
 All flags: `node dist/cli.js --help`. Version: `node dist/cli.js --version`.
 
+### Check a built APK without the source code
+
+| Command | What it does |
+|---|---|
+| `node dist/cli.js --apk ~/Downloads/app-release.apk` | Run in a folder without a React Native project: checks only the APK (16 KB pages and Google Play rules). Sends nothing over the network. |
+| `node dist/cli.js --apk examples/15-play-store/debug-signed.apk` | One of the example APKs (run `npx tsx scripts/make-example-apks.ts` first); each has one Play Store problem. |
+| `node dist/cli.js "/path/to/your-rn-app" --apk "/path/to/app-release.apk"` | Full project report plus the "Play Store ready?" section for the build. |
+
 ### Finding paths
 
 | Command | What it does |
@@ -100,9 +108,9 @@ After code changes, run `npm run build` again; the linked command uses `dist/`.
 | Command | What it does |
 |---|---|
 | `npm pack --dry-run` | Lists the files that would be published (should be `dist/`, `README.md`, `LICENSE`, `package.json`). Nothing is uploaded. |
-| `npm pack --pack-destination /tmp` | Builds the real package file, `/tmp/rn-upgrade-doctor-0.1.0.tgz`. |
-| `npx --yes --package /tmp/rn-upgrade-doctor-0.1.0.tgz rn-upgrade-doctor --version` | Installs that file in a temporary place and runs it, just like `npx rn-upgrade-doctor` after publishing. |
-| `npx --yes --package /tmp/rn-upgrade-doctor-0.1.0.tgz rn-upgrade-doctor "/path/to/your-rn-app"` | Scans a project with the packed version. |
+| `npm pack --pack-destination /tmp` | Builds the real package file, `/tmp/rn-upgrade-doctor-0.2.0.tgz`. |
+| `npx --yes --package /tmp/rn-upgrade-doctor-0.2.0.tgz rn-upgrade-doctor --version` | Installs that file in a temporary place and runs it, just like `npx rn-upgrade-doctor` after publishing. |
+| `npx --yes --package /tmp/rn-upgrade-doctor-0.2.0.tgz rn-upgrade-doctor "/path/to/your-rn-app"` | Scans a project with the packed version. |
 
 ## 7. Registry cache
 
@@ -122,4 +130,4 @@ After code changes, run `npm run build` again; the linked command uses `dist/`.
 | `git push` | Pushes to GitHub; CI (lint, test, build) runs on every push. Check the Actions tab. |
 | `npm login` | Signs in to npm (once). |
 | `npm publish` | Publishes `dist/` to npm as `rn-upgrade-doctor`. Run `npm run build`, `npm test` and `npm pack --dry-run` first. |
-| `git tag v0.1.0 && git push --tags` | Tags the release, so the GitHub Action can be used as `ChakrapaniReddy15/rn-upgrade-doctor@v0.1.0`. |
+| `git tag v0.2.0 && git push --tags` | Tags the release, so the GitHub Action can be used as `ChakrapaniReddy15/rn-upgrade-doctor@v0.2.0`. |

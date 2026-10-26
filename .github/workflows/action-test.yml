@@ -33,6 +33,11 @@ jobs:
             apk: bad.apk
             blockers: '3'
             finding: apk-16kb:react-native-mmkv
+          - name: Play Store check of an APK without a project
+            dir: examples/15-play-store
+            apk: debug-signed.apk
+            blockers: '1'
+            finding: play-debug-signed
     steps:
       - uses: actions/checkout@v4
 
